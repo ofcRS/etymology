@@ -2,7 +2,7 @@
 
 <img width="2388" height="1512" alt="image" src="https://github.com/user-attachments/assets/34e8efa5-1915-49cb-a415-de99f3542be2" />
 
-Find shared Indo-European roots between English and Russian words, visualized as interactive etymology graphs.
+Find shared Indo-European roots between words across 16 languages, visualized as interactive etymology graphs.
 
 Enter two words → see if they share a common ancestor → explore the etymological chain.
 

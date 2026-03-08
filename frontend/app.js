@@ -9,7 +9,11 @@ const graphContainer = document.getElementById("graph-container");
 
 // Language auto-detection
 function detectLang(text) {
-  return /[а-яёА-ЯЁ]/.test(text) ? "Russian" : "English";
+  if (/[а-яёА-ЯЁ]/.test(text)) return "Russian";
+  if (/[\u0530-\u058F]/.test(text)) return "Armenian";
+  if (/[\u0370-\u03FF]/.test(text)) return "Greek";
+  if (/[\u0600-\u06FF]/.test(text)) return "Arabic";
+  return "English";
 }
 
 function setupLangDetection(input, langSelect) {
