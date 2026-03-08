@@ -1,0 +1,13 @@
+[project]
+name = "etymology"
+version = "0.1.0"
+description = "Cognate detector for English-Russian word pairs using Wiktionary etymology data"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "networkx",
+    "pandas",
+    "pyarrow",
+    "httpx",
+]

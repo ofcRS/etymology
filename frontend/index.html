@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etymology — Cognate Detector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Etymology</h1>
+            <p class="subtitle">Discover shared Indo-European roots between English and Russian words</p>
+        </header>
+
+        <form id="cognate-form">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="word-a">Word A</label>
+                    <div class="input-with-lang">
+                        <input type="text" id="word-a" placeholder="e.g. water" autocomplete="off" required>
+                        <select id="lang-a">
+                            <option value="English">EN</option>
+                            <option value="Russian">RU</option>
+                        </select>
+                    </div>
+                    <ul class="suggestions" id="suggestions-a"></ul>
+                </div>
+
+                <div class="input-group">
+                    <label for="word-b">Word B</label>
+                    <div class="input-with-lang">
+                        <input type="text" id="word-b" placeholder="e.g. вода" autocomplete="off" required>
+                        <select id="lang-b">
+                            <option value="Russian">RU</option>
+                            <option value="English">EN</option>
+                        </select>
+                    </div>
+                    <ul class="suggestions" id="suggestions-b"></ul>
+                </div>
+
+                <button type="submit" id="check-btn">Check</button>
+            </div>
+        </form>
+
+        <div id="result" class="result hidden"></div>
+
+        <div id="graph-container">
+            <svg id="graph"></svg>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="app.js"></script>
+    <script src="graph.js"></script>
+</body>
+</html>
