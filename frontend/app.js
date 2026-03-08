@@ -7,6 +7,23 @@ const resultDiv = document.getElementById("result");
 const checkBtn = document.getElementById("check-btn");
 const graphContainer = document.getElementById("graph-container");
 
+// Language auto-detection
+function detectLang(text) {
+  return /[а-яёА-ЯЁ]/.test(text) ? "Russian" : "English";
+}
+
+function setupLangDetection(input, langSelect) {
+  input.addEventListener("input", () => {
+    const text = input.value.trim();
+    if (text.length > 0) {
+      langSelect.value = detectLang(text);
+    }
+  });
+}
+
+setupLangDetection(wordA, langA);
+setupLangDetection(wordB, langB);
+
 // Autocomplete
 let debounceTimer = null;
 
@@ -91,6 +108,10 @@ form.addEventListener("submit", async (e) => {
     } else {
       resultDiv.className = "result not-cognate";
       resultDiv.textContent = data.message;
+      if (data.graph_a || data.graph_b) {
+        graphContainer.classList.add("active");
+        renderSplitGraphs(data.graph_a, data.graph_b);
+      }
     }
   } catch (err) {
     resultDiv.className = "result not-cognate";

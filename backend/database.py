@@ -31,6 +31,26 @@ def lookup_word(term: str, lang: str) -> bool:
 
 
 
+REFLEX_LANGS = ("English", "Russian", "Latin", "Ancient Greek", "Sanskrit", "German", "French")
+
+
+def get_reflexes(term: str, lang: str, limit: int = 5) -> dict[str, str]:
+    """Get modern-language reflexes (descendants) of an ancestor term."""
+    conn = get_connection()
+    placeholders = ",".join("?" * len(REFLEX_LANGS))
+    rows = conn.execute(
+        f"""
+        SELECT DISTINCT term, lang FROM etymologies
+        WHERE related_term = ? AND related_lang = ?
+        AND lang IN ({placeholders})
+        LIMIT ?
+        """,
+        (term, lang, *REFLEX_LANGS, limit),
+    ).fetchall()
+    conn.close()
+    return {row["lang"]: row["term"] for row in rows}
+
+
 def search_words(prefix: str, lang: str, limit: int = 10) -> list[dict]:
     """Autocomplete search by prefix."""
     conn = get_connection()

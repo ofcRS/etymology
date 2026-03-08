@@ -1,0 +1,22 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 46.224.197.82
+          username: root
+          key: ${{ secrets.SSH_DEPLOY_KEY }}
+          script: |
+            export PATH="/root/.local/bin:$PATH"
+            cd /opt/etymology
+            git pull origin main
+            uv sync
+            systemctl restart etymology

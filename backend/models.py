@@ -16,6 +16,7 @@ class GraphNode(BaseModel):
     term: str
     lang: str
     type: str  # "input", "ancestor", "intermediate"
+    translations: dict[str, str] | None = None
 
 
 class GraphLink(BaseModel):
@@ -34,6 +35,8 @@ class CognateResponse(BaseModel):
     common_ancestor: str | None = None
     ancestor_lang: str | None = None
     graph: GraphData | None = None
+    graph_a: GraphData | None = None
+    graph_b: GraphData | None = None
     message: str
 
 

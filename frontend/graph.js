@@ -147,6 +147,17 @@ function renderGraph(data) {
     .attr("dy", (d) => (NODE_RADIUS[d.type] || 6) + 14)
     .text((d) => LANG_NAMES[d.lang] || d.lang);
 
+  // Translation labels for ancestor/intermediate nodes
+  node
+    .filter((d) => d.translations && Object.keys(d.translations).length > 0)
+    .append("text")
+    .attr("class", "translation-label")
+    .attr("dy", (d) => (NODE_RADIUS[d.type] || 6) + 26)
+    .text((d) => {
+      const entries = Object.entries(d.translations).slice(0, 3);
+      return entries.map(([, term]) => term).join(", ");
+    });
+
   // Tick
   simulation.on("tick", () => {
     link
@@ -166,4 +177,26 @@ function renderGraph(data) {
   setTimeout(() => {
     svg.call(zoom.transform, d3.zoomIdentity);
   }, 100);
+}
+
+function renderSplitGraphs(graphA, graphB) {
+  // Merge both graphs into a single dataset and let D3 force simulation
+  // naturally separate the disconnected components
+  const nodes = [];
+  const links = [];
+  const seenIds = new Set();
+
+  [graphA, graphB].forEach((g) => {
+    if (!g) return;
+    g.nodes.forEach((n) => {
+      if (!seenIds.has(n.id)) {
+        seenIds.add(n.id);
+        nodes.push(n);
+      }
+    });
+    links.push(...g.links);
+  });
+
+  if (nodes.length === 0) return;
+  renderGraph({ nodes, links });
 }

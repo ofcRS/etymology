@@ -1,6 +1,6 @@
 from collections import deque
 
-from backend.database import get_connection, lookup_word
+from backend.database import get_connection, get_reflexes, lookup_word
 from backend.models import CognateResponse, GraphData, GraphLink, GraphNode
 
 PROTO_LANGS = {
@@ -64,8 +64,12 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
     common = set(ancestors_a.keys()) & set(ancestors_b.keys())
 
     if not common:
+        graph_a = _build_single_tree(word_a, ancestors_a)
+        graph_b = _build_single_tree(word_b, ancestors_b)
         return CognateResponse(
             is_cognate=False,
+            graph_a=graph_a,
+            graph_b=graph_b,
             message=f"No common ancestor found between '{word_a[0]}' and '{word_b[0]}'.",
         )
 
@@ -91,6 +95,57 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
     )
 
 
+def _enrich_with_translations(graph: GraphData) -> None:
+    """Add modern-language reflexes to ancestor/intermediate nodes."""
+    for node in graph.nodes:
+        if node.type in ("ancestor", "intermediate"):
+            reflexes = get_reflexes(node.term, node.lang)
+            if reflexes:
+                node.translations = reflexes
+
+
+def _build_single_tree(
+    word: tuple[str, str],
+    ancestors: dict[tuple[str, str], list],
+) -> GraphData | None:
+    """Build a graph from a word to its deepest proto-ancestor."""
+    # Find the best ancestor (prefer PIE, then other proto-langs)
+    best = None
+    best_score = (3, 0)
+    for node, path in ancestors.items():
+        if node == word:
+            continue
+        if node[1] == "Proto-Indo-European":
+            priority = 0
+        elif node[1] in PROTO_LANGS:
+            priority = 1
+        else:
+            continue  # Only show paths to proto-langs
+        score = (priority, len(path))
+        if score < best_score:
+            best_score = score
+            best = node
+
+    if best is None:
+        return None
+
+    path = ancestors[best]
+    nodes_set: dict[tuple[str, str], str] = {}
+    links: list[GraphLink] = []
+
+    nodes_set[word] = "input"
+    nodes_set[best] = "ancestor"
+    _add_path_to_graph(path, best, nodes_set, links)
+
+    nodes = [
+        GraphNode(id=f"{term}|{lang}", term=term, lang=lang, type=node_type)
+        for (term, lang), node_type in nodes_set.items()
+    ]
+    graph = GraphData(nodes=nodes, links=links)
+    _enrich_with_translations(graph)
+    return graph
+
+
 def _build_graph_data(
     word_a: tuple[str, str],
     word_b: tuple[str, str],
@@ -112,7 +167,9 @@ def _build_graph_data(
         GraphNode(id=f"{term}|{lang}", term=term, lang=lang, type=node_type)
         for (term, lang), node_type in nodes_set.items()
     ]
-    return GraphData(nodes=nodes, links=links)
+    graph = GraphData(nodes=nodes, links=links)
+    _enrich_with_translations(graph)
+    return graph
 
 
 def _add_path_to_graph(

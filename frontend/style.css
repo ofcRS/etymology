@@ -245,6 +245,15 @@ button[type="submit"]:disabled {
     text-anchor: middle;
 }
 
+.translation-label {
+    font-size: 8px;
+    fill: var(--gold);
+    text-anchor: middle;
+    font-style: italic;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
 .link {
     stroke: var(--border);
     stroke-width: 1.5;
