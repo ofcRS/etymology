@@ -6,7 +6,6 @@ requires-python = ">=3.11"
 dependencies = [
     "fastapi",
     "uvicorn[standard]",
-    "networkx",
     "pandas",
     "pyarrow",
     "httpx",

@@ -1,33 +1,18 @@
-from contextlib import asynccontextmanager
-
-import networkx as nx
 from fastapi import FastAPI, Query
 from fastapi.staticfiles import StaticFiles
 
-from backend.graph import build_graph, find_cognates
+from backend.graph import find_cognates
 from backend.models import CognateRequest, CognateResponse, SearchResult
 from backend.database import search_words
 
-graph: nx.DiGraph | None = None
-
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    global graph
-    print("Building etymology graph...")
-    graph = build_graph()
-    print("Graph ready.")
-    yield
-
-
-app = FastAPI(title="Etymology Cognate Detector", lifespan=lifespan)
+app = FastAPI(title="Etymology Cognate Detector")
 
 
 @app.post("/api/cognates", response_model=CognateResponse)
 async def check_cognates(req: CognateRequest):
     word_a = (req.word_a.term.lower().strip(), req.word_a.lang)
     word_b = (req.word_b.term.lower().strip(), req.word_b.lang)
-    return find_cognates(graph, word_a, word_b)
+    return find_cognates(word_a, word_b)
 
 
 @app.get("/api/search", response_model=list[SearchResult])

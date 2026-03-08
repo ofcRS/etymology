@@ -30,15 +30,6 @@ def lookup_word(term: str, lang: str) -> bool:
     return row is not None
 
 
-def get_all_relationships() -> list[dict]:
-    """Load all etymology relationships for graph building."""
-    conn = get_connection()
-    rows = conn.execute(
-        "SELECT term, lang, related_term, related_lang, reltype FROM etymologies"
-    ).fetchall()
-    conn.close()
-    return [dict(r) for r in rows]
-
 
 def search_words(prefix: str, lang: str, limit: int = 10) -> list[dict]:
     """Autocomplete search by prefix."""
