@@ -9,11 +9,11 @@ const graphContainer = document.getElementById("graph-container");
 
 // Language auto-detection
 function detectLang(text) {
-  if (/[а-яёА-ЯЁ]/.test(text)) return "Russian";
-  if (/[\u0530-\u058F]/.test(text)) return "Armenian";
-  if (/[\u0370-\u03FF]/.test(text)) return "Greek";
-  if (/[\u0600-\u06FF]/.test(text)) return "Arabic";
-  return "English";
+  if (/[а-яёА-ЯЁ]/.test(text)) return "ru";
+  if (/[\u0530-\u058F]/.test(text)) return "hy";
+  if (/[\u0370-\u03FF]/.test(text)) return "el";
+  if (/[\u0600-\u06FF]/.test(text)) return "ar";
+  return "en";
 }
 
 function setupLangDetection(input, langSelect) {
@@ -81,7 +81,7 @@ form.addEventListener("submit", async (e) => {
 
   checkBtn.disabled = true;
   resultDiv.className = "result";
-  resultDiv.innerHTML = '<span class="loading"></span> Searching...';
+  resultDiv.innerHTML = '<span class="loading"></span> Ищем связь...';
   resultDiv.classList.remove("hidden");
   graphContainer.classList.remove("active");
 

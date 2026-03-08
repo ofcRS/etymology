@@ -1,34 +1,61 @@
 const LANG_NAMES = {
   en: "English",
   ru: "Russian",
+  de: "German",
+  fr: "French",
+  es: "Spanish",
+  it: "Italian",
+  pt: "Portuguese",
+  nl: "Dutch",
+  pl: "Polish",
+  cs: "Czech",
+  el: "Greek",
+  hy: "Armenian",
+  fa: "Persian",
+  ar: "Arabic",
   "ine-pro": "Proto-Indo-European",
   "gem-pro": "Proto-Germanic",
   "sla-pro": "Proto-Slavic",
   "ine-bsl-pro": "Proto-Balto-Slavic",
   "iir-pro": "Proto-Indo-Iranian",
+  "gmw-pro": "Proto-West Germanic",
+  "itc-pro": "Proto-Italic",
+  "grk-pro": "Proto-Hellenic",
   ang: "Old English",
   enm: "Middle English",
   la: "Latin",
+  lla: "Late Latin",
   grc: "Ancient Greek",
   cu: "Old Church Slavonic",
   orv: "Old East Slavic",
   non: "Old Norse",
   fro: "Old French",
+  xno: "Old Northern French",
   frm: "Middle French",
   sa: "Sanskrit",
   goh: "Old High German",
+  gmh: "Middle High German",
+  gml: "Middle Low German",
+  dum: "Middle Dutch",
+  odt: "Old Dutch",
+  osx: "Old Saxon",
+  peo: "Old Persian",
+  xcl: "Old Armenian",
+  "la-med": "Medieval Latin",
+  "la-new": "New Latin",
+  "la-lat": "Late Latin",
 };
 
 const NODE_COLORS = {
-  input: "#6c8cff",
-  ancestor: "#f0c040",
-  intermediate: "#666680",
+  input: "#8b6530",
+  ancestor: "#c8a830",
+  intermediate: "#5a4428",
 };
 
 const NODE_RADIUS = {
-  input: 8,
-  ancestor: 12,
-  intermediate: 6,
+  input: 10,
+  ancestor: 14,
+  intermediate: 7,
 };
 
 function renderGraph(data) {
@@ -54,7 +81,7 @@ function renderGraph(data) {
     .attr("orient", "auto")
     .append("path")
     .attr("d", "M0,-5L10,0L0,5")
-    .attr("fill", "#2a2a3a");
+    .attr("fill", "#5a4428");
 
   const g = svg.append("g");
 
@@ -86,7 +113,7 @@ function renderGraph(data) {
     .data(data.links)
     .join("line")
     .attr("class", "link")
-    .attr("stroke", "#2a2a3a")
+    .attr("stroke", "#3d2e1a")
     .attr("stroke-width", 1.5)
     .attr("stroke-dasharray", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "5,3" : "none")
     .attr("marker-end", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "none" : "url(#arrowhead)");
@@ -125,14 +152,59 @@ function renderGraph(data) {
         })
     );
 
-  // Node circles
-  node
+  // Type-specific node rendering
+  // Ancestor nodes: gold circle + glow + dashed outer ring + sun rays
+  const ancestors = node.filter((d) => d.type === "ancestor");
+
+  // Sun-ray lines (8 rays)
+  for (let i = 0; i < 8; i++) {
+    const angle = (i * Math.PI * 2) / 8;
+    const x1 = Math.cos(angle) * 18;
+    const y1 = Math.sin(angle) * 18;
+    const x2 = Math.cos(angle) * 28;
+    const y2 = Math.sin(angle) * 28;
+    ancestors
+      .append("line")
+      .attr("x1", x1)
+      .attr("y1", y1)
+      .attr("x2", x2)
+      .attr("y2", y2)
+      .attr("stroke", "#c8a830")
+      .attr("stroke-width", 1.2)
+      .attr("opacity", 0.35);
+  }
+
+  // Dashed outer ring
+  ancestors
     .append("circle")
-    .attr("r", (d) => NODE_RADIUS[d.type] || 6)
-    .attr("fill", (d) => NODE_COLORS[d.type] || "#666")
-    .attr("stroke", (d) => (d.type === "ancestor" ? "#f0c040" : "none"))
-    .attr("stroke-width", (d) => (d.type === "ancestor" ? 3 : 0))
-    .attr("stroke-opacity", 0.3);
+    .attr("r", 20)
+    .attr("fill", "none")
+    .attr("stroke", "#c8a830")
+    .attr("stroke-width", 1)
+    .attr("stroke-dasharray", "3,3")
+    .attr("opacity", 0.4);
+
+  // Main circle with glow
+  ancestors
+    .append("circle")
+    .attr("r", NODE_RADIUS.ancestor)
+    .attr("fill", NODE_COLORS.ancestor)
+    .attr("filter", "url(#glow-gold)");
+
+  // Input nodes: bronze circle + amber glow
+  const inputs = node.filter((d) => d.type === "input");
+  inputs
+    .append("circle")
+    .attr("r", NODE_RADIUS.input)
+    .attr("fill", NODE_COLORS.input)
+    .attr("filter", "url(#glow-amber)");
+
+  // Intermediate nodes: muted wood circle, no glow
+  const intermediates = node.filter((d) => d.type === "intermediate");
+  intermediates
+    .append("circle")
+    .attr("r", NODE_RADIUS.intermediate)
+    .attr("fill", NODE_COLORS.intermediate);
 
   // Term labels
   node
@@ -145,7 +217,7 @@ function renderGraph(data) {
   node
     .append("text")
     .attr("class", "lang-label")
-    .attr("dy", (d) => (NODE_RADIUS[d.type] || 6) + 14)
+    .attr("dy", (d) => (NODE_RADIUS[d.type] || 7) + 14)
     .text((d) => LANG_NAMES[d.lang] || d.lang);
 
   // Translation labels for ancestor/intermediate nodes
@@ -153,7 +225,7 @@ function renderGraph(data) {
     .filter((d) => d.translations && Object.keys(d.translations).length > 0)
     .append("text")
     .attr("class", "translation-label")
-    .attr("dy", (d) => (NODE_RADIUS[d.type] || 6) + 26)
+    .attr("dy", (d) => (NODE_RADIUS[d.type] || 7) + 26)
     .text((d) => {
       const entries = Object.entries(d.translations).slice(0, 3);
       return entries.map(([, term]) => term).join(", ");
@@ -181,8 +253,6 @@ function renderGraph(data) {
 }
 
 function renderSplitGraphs(graphA, graphB) {
-  // Merge both graphs into a single dataset and let D3 force simulation
-  // naturally separate the disconnected components
   const nodes = [];
   const links = [];
   const seenIds = new Set();
