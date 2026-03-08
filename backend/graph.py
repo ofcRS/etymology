@@ -16,9 +16,11 @@ PROTO_LANGS = {
 
 MAX_BFS_DEPTH = 12
 
+STRONG_RELTYPES = {"inherited_from", "derived_from", "borrowed_from"}
+
 
 def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
-    """BFS from start node via SQLite queries. No in-memory graph needed."""
+    """BFS from start node via SQLite queries. Only follows strong etymology edges."""
     conn = get_connection()
     visited = {start: []}
     queue = deque([(start, 0)])
@@ -37,6 +39,8 @@ def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
         ).fetchall()
 
         for row in rows:
+            if row["reltype"] not in STRONG_RELTYPES:
+                continue
             neighbor = (row["related_term"], row["related_lang"])
             if neighbor not in visited:
                 visited[neighbor] = current_path + [(current, row["reltype"])]
