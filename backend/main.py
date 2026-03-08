@@ -10,13 +10,13 @@ app = FastAPI(title="Etymology Cognate Detector")
 
 @app.post("/api/cognates", response_model=CognateResponse)
 async def check_cognates(req: CognateRequest):
-    word_a = (req.word_a.term.lower().strip(), req.word_a.lang)
-    word_b = (req.word_b.term.lower().strip(), req.word_b.lang)
+    word_a = (req.word_a.term.strip(), req.word_a.lang)
+    word_b = (req.word_b.term.strip(), req.word_b.lang)
     return find_cognates(word_a, word_b)
 
 
 @app.get("/api/search", response_model=list[SearchResult])
-async def search(q: str = Query(min_length=1), lang: str = Query(default="English")):
+async def search(q: str = Query(min_length=1), lang: str = Query(default="en")):
     results = search_words(q.lower().strip(), lang)
     return [SearchResult(term=r["term"], lang=r["lang"]) for r in results]
 

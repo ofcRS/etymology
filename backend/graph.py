@@ -2,24 +2,70 @@ import re
 import unicodedata
 from collections import deque
 
-from backend.database import get_connection, get_reflexes, lookup_word
+from backend.database import get_connection, get_reflexes, resolve_term
 from backend.models import CognateResponse, GraphData, GraphLink, GraphNode
 
 PROTO_LANGS = {
-    "Proto-Indo-European",
-    "Proto-Germanic",
-    "Proto-Slavic",
-    "Proto-Balto-Slavic",
-    "Proto-Indo-Iranian",
-    "Proto-West Germanic",
-    "Proto-Italic",
-    "Proto-Hellenic",
+    "ine-pro", "gem-pro", "sla-pro", "ine-bsl-pro",
+    "iir-pro", "gmw-pro", "itc-pro", "grk-pro",
+}
+
+LANG_NAMES = {
+    "en": "English",
+    "ru": "Russian",
+    "de": "German",
+    "fr": "French",
+    "es": "Spanish",
+    "it": "Italian",
+    "pt": "Portuguese",
+    "nl": "Dutch",
+    "pl": "Polish",
+    "cs": "Czech",
+    "el": "Greek",
+    "hy": "Armenian",
+    "fa": "Persian",
+    "ar": "Arabic",
+    "ine-pro": "Proto-Indo-European",
+    "gem-pro": "Proto-Germanic",
+    "sla-pro": "Proto-Slavic",
+    "ine-bsl-pro": "Proto-Balto-Slavic",
+    "iir-pro": "Proto-Indo-Iranian",
+    "gmw-pro": "Proto-West Germanic",
+    "itc-pro": "Proto-Italic",
+    "grk-pro": "Proto-Hellenic",
+    "ang": "Old English",
+    "enm": "Middle English",
+    "la": "Latin",
+    "lla": "Late Latin",
+    "grc": "Ancient Greek",
+    "cu": "Old Church Slavonic",
+    "orv": "Old East Slavic",
+    "non": "Old Norse",
+    "fro": "Old French",
+    "xno": "Old Northern French",
+    "frm": "Middle French",
+    "sa": "Sanskrit",
+    "goh": "Old High German",
+    "gmh": "Middle High German",
+    "gml": "Middle Low German",
+    "dum": "Middle Dutch",
+    "odt": "Old Dutch",
+    "osx": "Old Saxon",
+    "peo": "Old Persian",
+    "xcl": "Old Armenian",
+    "la-med": "Medieval Latin",
+    "la-new": "New Latin",
+    "la-lat": "Late Latin",
 }
 
 MAX_BFS_DEPTH = 12
 
 STRONG_RELTYPES = {"inherited_from", "derived_from", "borrowed_from", "has_root"}
 WEAK_RELTYPES = {"cognate_of"}
+
+
+def _lang_display(code: str) -> str:
+    return LANG_NAMES.get(code, code)
 
 
 def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
@@ -96,7 +142,7 @@ def _fuzzy_match_proto_ancestors(
 
     def score(key):
         lang = key[1]
-        if lang == "Proto-Indo-European":
+        if lang == "ine-pro":
             priority = 0
         elif lang in PROTO_LANGS:
             priority = 1
@@ -175,7 +221,7 @@ def _find_weak_bridge(
         for row in rows:
             neighbor = (row["related_term"], row["related_lang"])
             if neighbor in set_b:
-                if node[1] == "Proto-Indo-European" or neighbor[1] == "Proto-Indo-European":
+                if node[1] == "ine-pro" or neighbor[1] == "ine-pro":
                     priority = 0
                 elif node[1] in PROTO_LANGS or neighbor[1] in PROTO_LANGS:
                     priority = 1
@@ -198,7 +244,7 @@ def _find_weak_bridge(
         for row in rows:
             neighbor = (row["related_term"], row["related_lang"])
             if neighbor in set_a:
-                if node[1] == "Proto-Indo-European" or neighbor[1] == "Proto-Indo-European":
+                if node[1] == "ine-pro" or neighbor[1] == "ine-pro":
                     priority = 0
                 elif node[1] in PROTO_LANGS or neighbor[1] in PROTO_LANGS:
                     priority = 1
@@ -253,16 +299,21 @@ def _build_weak_bridge_graph_data(
 
 
 def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateResponse:
-    if not lookup_word(word_a[0], word_a[1]):
+    resolved_a = resolve_term(word_a[0], word_a[1])
+    if not resolved_a:
         return CognateResponse(
             is_cognate=False,
-            message=f"Word '{word_a[0]}' ({word_a[1]}) not found in etymology database.",
+            message=f"Word '{word_a[0]}' ({_lang_display(word_a[1])}) not found in etymology database.",
         )
-    if not lookup_word(word_b[0], word_b[1]):
+    word_a = (resolved_a, word_a[1])
+
+    resolved_b = resolve_term(word_b[0], word_b[1])
+    if not resolved_b:
         return CognateResponse(
             is_cognate=False,
-            message=f"Word '{word_b[0]}' ({word_b[1]}) not found in etymology database.",
+            message=f"Word '{word_b[0]}' ({_lang_display(word_b[1])}) not found in etymology database.",
         )
+    word_b = (resolved_b, word_b[1])
 
     ancestors_a = _bfs_ancestors(word_a)
     ancestors_b = _bfs_ancestors(word_b)
@@ -281,9 +332,9 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
             return CognateResponse(
                 is_cognate=True,
                 common_ancestor=bridge_a[0],
-                ancestor_lang=bridge_a[1],
+                ancestor_lang=_lang_display(bridge_a[1]),
                 graph=graph_data,
-                message=f"Cognates! '{bridge_a[0]}' ({bridge_a[1]}) ↔ '{bridge_b[0]}' ({bridge_b[1]}) via {bridge_reltype.replace('_', ' ')}",
+                message=f"Cognates! '{bridge_a[0]}' ({_lang_display(bridge_a[1])}) ↔ '{bridge_b[0]}' ({_lang_display(bridge_b[1])}) via {bridge_reltype.replace('_', ' ')}",
             )
 
         # Fuzzy fallback: match proto-ancestors by normalized root
@@ -296,9 +347,9 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
             return CognateResponse(
                 is_cognate=True,
                 common_ancestor=proto_a[0],
-                ancestor_lang=proto_a[1],
+                ancestor_lang=_lang_display(proto_a[1]),
                 graph=graph_data,
-                message=f"Cognates! Common root: '{proto_a[0]}' / '{proto_b[0]}' ({proto_a[1]})",
+                message=f"Cognates! Common root: '{proto_a[0]}' / '{proto_b[0]}' ({_lang_display(proto_a[1])})",
             )
 
         graph_a = _build_single_tree(word_a, ancestors_a)
@@ -311,7 +362,7 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
         )
 
     def score(node: tuple[str, str]) -> tuple[int, int]:
-        if node[1] == "Proto-Indo-European":
+        if node[1] == "ine-pro":
             priority = 0
         elif node[1] in PROTO_LANGS:
             priority = 1
@@ -326,9 +377,9 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
     return CognateResponse(
         is_cognate=True,
         common_ancestor=best[0],
-        ancestor_lang=best[1],
+        ancestor_lang=_lang_display(best[1]),
         graph=graph_data,
-        message=f"Cognates! Common ancestor: '{best[0]}' ({best[1]})",
+        message=f"Cognates! Common ancestor: '{best[0]}' ({_lang_display(best[1])})",
     )
 
 
@@ -352,7 +403,7 @@ def _build_single_tree(
     for node, path in ancestors.items():
         if node == word:
             continue
-        if node[1] == "Proto-Indo-European":
+        if node[1] == "ine-pro":
             priority = 0
         elif node[1] in PROTO_LANGS:
             priority = 1

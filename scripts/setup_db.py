@@ -1,57 +1,86 @@
-"""Download etymology-db Parquet, filter to relevant languages, write to SQLite."""
+"""Download kaikki.org wiktextract JSONL, extract etymology edges, write to SQLite."""
 
+import gzip
+import json
 import sqlite3
 from pathlib import Path
 
 import httpx
-import pandas as pd
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DB_PATH = DATA_DIR / "etymology.db"
 
-PARQUET_URL = (
-    "https://github.com/droher/etymology-db/releases/download/2023-12/etymology.parquet"
-)
-PARQUET_PATH = DATA_DIR / "etymology.parquet"
+JSONL_URL = "https://kaikki.org/dictionary/raw-wiktextract-data.jsonl.gz"
+JSONL_GZ_PATH = DATA_DIR / "raw-wiktextract-data.jsonl.gz"
 
 RELEVANT_LANGS = {
     # Modern
-    "English", "Russian",
+    "en", "ru", "de", "fr", "es", "it", "pt", "nl", "pl", "cs", "el", "hy", "fa", "ar",
     # Proto
-    "Proto-Indo-European", "Proto-Germanic", "Proto-Slavic",
-    "Proto-Balto-Slavic", "Proto-Indo-Iranian",
-    "Proto-West Germanic", "Proto-Italic", "Proto-Hellenic",
+    "ine-pro", "gem-pro", "sla-pro", "ine-bsl-pro", "iir-pro", "gmw-pro", "itc-pro", "grk-pro",
     # Historical
-    "Old English", "Middle English",
-    "Latin", "Late Latin", "Medieval Latin", "New Latin",
-    "Ancient Greek", "Koine Greek",
-    "Old Church Slavonic", "Old Russian", "Old East Slavic",
-    "Old Norse", "Old French", "Old Northern French",
-    "Middle French", "Sanskrit", "Old High German",
-    "Middle High German", "Middle Low German", "Middle Dutch",
-    "Old Dutch", "Old Saxon", "Old Latin",
-    "Old Persian", "Old Portuguese", "Old Spanish",
-    # Additional useful
-    "German", "French", "Dutch", "Spanish", "Italian",
-    "Portuguese", "Polish", "Czech",
-    "Greek", "Armenian", "Old Armenian",
-    "Persian", "Arabic",
+    "ang", "enm", "la", "lla", "grc", "cu", "orv", "non", "fro", "xno", "frm", "sa",
+    "goh", "gmh", "gml", "dum", "odt", "osx", "peo", "xcl",
+    # Medieval/New/Late Latin variants used by wiktextract
+    "la-med", "la-new", "la-lat",
 }
 
+# 3-arg templates: args.1=self_lang, args.2=source_lang, args.3=source_term
+THREE_ARG_TEMPLATES = {
+    "inh": "inherited_from",
+    "inh+": "inherited_from",
+    "der": "derived_from",
+    "bor": "borrowed_from",
+    "bor+": "borrowed_from",
+    "lbor": "learned_borrowing_from",
+    "slbor": "semi_learned_borrowing_from",
+    "ubor": "unadapted_borrowing_from",
+    "obor": "orthographic_borrowing_from",
+    "root": "has_root",
+    "cal": "calque_of",
+    "bf": "back_formation_from",
+}
 
-def download_parquet() -> None:
-    if PARQUET_PATH.exists():
-        print(f"Parquet already exists at {PARQUET_PATH}, skipping download.")
+# 2-arg templates: args.1=other_lang, args.2=other_term
+TWO_ARG_TEMPLATES = {
+    "cog": "cognate_of",
+    "rel": "etymologically_related_to",
+}
+
+# Self-lang templates: args.1=self_lang, args.2=term in same lang
+SELF_LANG_TEMPLATES = {
+    "doublet": "doublet_with",
+    "clipping": "clipping_of",
+    "blend": "blend_of",
+}
+
+# Multi-arg templates: args.1=self_lang, args.2+ = components in same lang
+MULTI_ARG_TEMPLATES = {
+    "af": "has_affix",
+    "affix": "has_affix",
+    "suffix": "has_affix",
+    "prefix": "has_affix",
+    "com": "compound_of",
+    "compound": "compound_of",
+    "con": "has_confix",
+}
+
+SKIP_TEMPLATES = {"dercat", "noncog", "ncog", "desc"}
+
+
+def download_jsonl_gz() -> None:
+    if JSONL_GZ_PATH.exists():
+        print(f"JSONL.gz already exists at {JSONL_GZ_PATH}, skipping download.")
         return
 
-    print("Downloading etymology.parquet (~140MB)...")
+    print("Downloading raw-wiktextract-data.jsonl.gz (~2.3GB)...")
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-    with httpx.stream("GET", PARQUET_URL, follow_redirects=True, timeout=300) as r:
+    with httpx.stream("GET", JSONL_URL, follow_redirects=True, timeout=600) as r:
         r.raise_for_status()
         total = int(r.headers.get("content-length", 0))
         downloaded = 0
-        with open(PARQUET_PATH, "wb") as f:
+        with open(JSONL_GZ_PATH, "wb") as f:
             for chunk in r.iter_bytes(chunk_size=1024 * 1024):
                 f.write(chunk)
                 downloaded += len(chunk)
@@ -61,39 +90,126 @@ def download_parquet() -> None:
     print("\nDownload complete.")
 
 
+def _extract_edges_from_entry(entry: dict) -> list[tuple[str, str, str, str, str]]:
+    """Extract etymology edges from a single wiktextract entry."""
+    word = entry.get("word")
+    lang_code = entry.get("lang_code")
+    if not word or not lang_code:
+        return []
+    if lang_code not in RELEVANT_LANGS:
+        return []
+
+    templates = entry.get("etymology_templates", [])
+    edges = []
+
+    for tmpl in templates:
+        name = tmpl.get("name", "")
+        args = tmpl.get("args", {})
+
+        if name in SKIP_TEMPLATES:
+            continue
+
+        if name in THREE_ARG_TEMPLATES:
+            # args: 1=self_lang, 2=source_lang, 3=source_term
+            source_lang = args.get("2", "")
+            source_term = args.get("3", "")
+            if source_lang and source_term and source_lang in RELEVANT_LANGS:
+                edges.append((word, lang_code, source_term, source_lang, THREE_ARG_TEMPLATES[name]))
+
+        elif name in TWO_ARG_TEMPLATES:
+            # args: 1=other_lang, 2=other_term
+            other_lang = args.get("1", "")
+            other_term = args.get("2", "")
+            if other_lang and other_term and other_lang in RELEVANT_LANGS:
+                edges.append((word, lang_code, other_term, other_lang, TWO_ARG_TEMPLATES[name]))
+
+        elif name in SELF_LANG_TEMPLATES:
+            # args: 1=self_lang, 2=term in same lang
+            other_term = args.get("2", "")
+            if other_term:
+                edges.append((word, lang_code, other_term, lang_code, SELF_LANG_TEMPLATES[name]))
+
+        elif name in MULTI_ARG_TEMPLATES:
+            # args: 1=component_lang, 2+ = components
+            reltype = MULTI_ARG_TEMPLATES[name]
+            component_lang = args.get("1", lang_code)
+            if component_lang not in RELEVANT_LANGS:
+                continue
+            for key in sorted(args.keys()):
+                if not key.isdigit() or key == "1":
+                    continue
+                component = args[key]
+                if component and not component.startswith("-"):
+                    edges.append((word, lang_code, component, component_lang, reltype))
+
+    return edges
+
+
 def build_sqlite() -> None:
-    print("Reading parquet...")
-    df = pd.read_parquet(PARQUET_PATH)
+    print("Parsing JSONL and building SQLite...")
 
-    print(f"Total rows in parquet: {len(df):,}")
-
-    # Filter: at least one side must be in our relevant set
-    # (related_lang can be NaN for root entries)
-    lang_match = df["lang"].isin(RELEVANT_LANGS)
-    related_match = df["related_lang"].isin(RELEVANT_LANGS)
-    mask = lang_match & (related_match | df["related_lang"].isna())
-    filtered = df[mask].copy()
-    print(f"Filtered rows (lang in set): {len(filtered):,}")
-
-    # Drop rows where related_term is NaN (group roots with no actual related word)
-    filtered = filtered.dropna(subset=["related_term"])
-    # Also require related_lang to be in our set
-    filtered = filtered[filtered["related_lang"].isin(RELEVANT_LANGS)]
-    print(f"After requiring both sides in set: {len(filtered):,}")
-
-    # Keep only needed columns
-    cols = ["term", "lang", "related_term", "related_lang", "reltype"]
-    filtered = filtered[cols]
-
-    # Write to SQLite
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     if DB_PATH.exists():
         DB_PATH.unlink()
 
     conn = sqlite3.connect(str(DB_PATH))
-    filtered.to_sql("etymologies", conn, index=False, if_exists="replace")
+    conn.execute("""
+        CREATE TABLE etymologies (
+            term TEXT NOT NULL,
+            lang TEXT NOT NULL,
+            related_term TEXT NOT NULL,
+            related_lang TEXT NOT NULL,
+            reltype TEXT NOT NULL
+        )
+    """)
+    conn.execute("""
+        CREATE UNIQUE INDEX idx_unique_edge
+        ON etymologies(term, lang, related_term, related_lang, reltype)
+    """)
 
-    # Create indexes
+    batch = []
+    total_inserted = 0
+    entries_processed = 0
+
+    with gzip.open(JSONL_GZ_PATH, "rt", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+            entries_processed += 1
+            if entries_processed % 500_000 == 0:
+                print(f"  Processed {entries_processed:,} entries, {total_inserted:,} edges inserted...")
+
+            edges = _extract_edges_from_entry(entry)
+            batch.extend(edges)
+
+            if len(batch) >= 10_000:
+                conn.executemany(
+                    "INSERT OR IGNORE INTO etymologies VALUES (?, ?, ?, ?, ?)",
+                    batch,
+                )
+                total_inserted += len(batch)
+                batch.clear()
+                conn.commit()
+
+    # Flush remaining
+    if batch:
+        conn.executemany(
+            "INSERT OR IGNORE INTO etymologies VALUES (?, ?, ?, ?, ?)",
+            batch,
+        )
+        total_inserted += len(batch)
+        conn.commit()
+
+    print(f"  Total entries processed: {entries_processed:,}")
+
+    # Create query indexes
+    print("Creating indexes...")
     conn.execute("CREATE INDEX idx_term_lang ON etymologies(term, lang)")
     conn.execute("CREATE INDEX idx_related ON etymologies(related_term, related_lang)")
     conn.execute("CREATE INDEX idx_term_prefix ON etymologies(lang, term)")
@@ -105,7 +221,7 @@ def build_sqlite() -> None:
 
     # Sample
     sample = conn.execute(
-        "SELECT term, lang, related_term, related_lang, reltype FROM etymologies WHERE lang = 'English' LIMIT 5"
+        "SELECT term, lang, related_term, related_lang, reltype FROM etymologies WHERE lang = 'en' LIMIT 5"
     ).fetchall()
     print("Sample English rows:")
     for r in sample:
@@ -113,12 +229,12 @@ def build_sqlite() -> None:
 
     conn.close()
 
-    # Clean up parquet
-    print("Removing parquet file...")
-    PARQUET_PATH.unlink()
+    # Clean up .gz
+    print("Removing .gz file...")
+    JSONL_GZ_PATH.unlink()
     print("Done.")
 
 
 if __name__ == "__main__":
-    download_parquet()
+    download_jsonl_gz()
     build_sqlite()

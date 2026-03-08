@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class WordInput(BaseModel):
     term: str
-    lang: str  # Full name: "English", "Russian", etc.
+    lang: str  # Wiktionary code: "en", "ru", etc.
 
 
 class CognateRequest(BaseModel):

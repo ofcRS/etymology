@@ -10,28 +10,37 @@ def get_connection() -> sqlite3.Connection:
     return conn
 
 
-def lookup_word(term: str, lang: str) -> bool:
-    """Check if a word exists in the database."""
+def resolve_term(term: str, lang: str) -> str | None:
+    """Find the canonical form of a term in the database (case-insensitive)."""
     conn = get_connection()
     row = conn.execute(
-        "SELECT 1 FROM etymologies WHERE term = ? AND lang = ? LIMIT 1",
+        "SELECT term FROM etymologies WHERE term = ? AND lang = ? LIMIT 1",
         (term, lang),
     ).fetchone()
     if row:
         conn.close()
-        return True
+        return row["term"]
+
+    # Try case-insensitive
+    row = conn.execute(
+        "SELECT term FROM etymologies WHERE LOWER(term) = LOWER(?) AND lang = ? LIMIT 1",
+        (term, lang),
+    ).fetchone()
+    if row:
+        conn.close()
+        return row["term"]
 
     # Also check as a related_term
     row = conn.execute(
-        "SELECT 1 FROM etymologies WHERE related_term = ? AND related_lang = ? LIMIT 1",
+        "SELECT related_term FROM etymologies WHERE LOWER(related_term) = LOWER(?) AND related_lang = ? LIMIT 1",
         (term, lang),
     ).fetchone()
     conn.close()
-    return row is not None
+    return row["related_term"] if row else None
 
 
 
-REFLEX_LANGS = ("English", "Russian", "Latin", "Ancient Greek", "Sanskrit", "German", "French")
+REFLEX_LANGS = ("en", "ru", "la", "grc", "sa", "de", "fr")
 
 
 def get_reflexes(term: str, lang: str, limit: int = 5) -> dict[str, str]:
