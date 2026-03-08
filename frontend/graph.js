@@ -88,7 +88,8 @@ function renderGraph(data) {
     .attr("class", "link")
     .attr("stroke", "#2a2a3a")
     .attr("stroke-width", 1.5)
-    .attr("marker-end", "url(#arrowhead)");
+    .attr("stroke-dasharray", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "5,3" : "none")
+    .attr("marker-end", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "none" : "url(#arrowhead)");
 
   // Link labels
   const linkLabel = g
