@@ -1,4 +1,7 @@
-const API = new URL(".", document.baseURI).href;
+const API = window.location.pathname.endsWith("/")
+  ? window.location.pathname
+  : window.location.pathname + "/";
+
 const form = document.getElementById("cognate-form");
 const wordA = document.getElementById("word-a");
 const wordB = document.getElementById("word-b");
