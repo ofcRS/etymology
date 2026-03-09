@@ -1,3 +1,4 @@
+const API = new URL(".", document.baseURI).href;
 const form = document.getElementById("cognate-form");
 const wordA = document.getElementById("word-a");
 const wordB = document.getElementById("word-b");
@@ -42,7 +43,7 @@ function setupAutocomplete(input, langSelect, suggestionsEl) {
     debounceTimer = setTimeout(async () => {
       const lang = langSelect.value;
       const res = await fetch(
-        `api/search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(lang)}`
+        `${API}api/search?q=${encodeURIComponent(q)}&lang=${encodeURIComponent(lang)}`
       );
       const data = await res.json();
       suggestionsEl.innerHTML = "";
@@ -86,7 +87,7 @@ form.addEventListener("submit", async (e) => {
   graphContainer.classList.remove("active");
 
   try {
-    const res = await fetch("api/cognates", {
+    const res = await fetch(`${API}api/cognates`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
