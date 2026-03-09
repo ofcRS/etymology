@@ -40,6 +40,7 @@ class CognateResponse(BaseModel):
     message: str
     summary: str | None = None
     confidence: str | None = None
+    ancestor_lang_code: str | None = None
 
 
 class SearchResult(BaseModel):

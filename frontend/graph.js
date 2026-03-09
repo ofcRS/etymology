@@ -408,3 +408,249 @@ function renderSplitGraphs(graphA, graphB) {
   if (nodes.length === 0) return;
   renderGraph({ nodes, links });
 }
+
+// Language family ordering for tree grouping
+const LANG_FAMILY_ORDER = {
+  "ine-pro": 0,
+  "gem-pro": 1, "gmw-pro": 1,
+  en: 1, de: 1, nl: 1, ang: 1, enm: 1, non: 1, goh: 1, gmh: 1, gml: 1, dum: 1, odt: 1, osx: 1,
+  "itc-pro": 2,
+  la: 2, lla: 2, "la-med": 2, "la-new": 2, "la-lat": 2,
+  fr: 2, es: 2, it: 2, pt: 2, fro: 2, xno: 2, frm: 2,
+  "grk-pro": 3, grc: 3, el: 3,
+  "ine-bsl-pro": 4, "sla-pro": 4,
+  ru: 4, pl: 4, cs: 4, cu: 4, orv: 4,
+  "iir-pro": 5, sa: 5, fa: 5, peo: 5,
+  hy: 6, xcl: 6,
+  ar: 7,
+};
+
+function buildHierarchy(data, rootId) {
+  const nodeMap = {};
+  data.nodes.forEach((n) => {
+    nodeMap[n.id] = { ...n, children: [], _reltype: null };
+  });
+
+  // Assign each child to one parent (first encountered)
+  const hasParent = new Set();
+  data.links.forEach((link) => {
+    if (
+      !hasParent.has(link.target) &&
+      nodeMap[link.source] &&
+      nodeMap[link.target]
+    ) {
+      hasParent.add(link.target);
+      nodeMap[link.target]._reltype = link.reltype;
+      nodeMap[link.source].children.push(nodeMap[link.target]);
+    }
+  });
+
+  // Sort children by language family
+  function sortChildren(node) {
+    node.children.sort(
+      (a, b) =>
+        (LANG_FAMILY_ORDER[a.lang] ?? 99) - (LANG_FAMILY_ORDER[b.lang] ?? 99)
+    );
+    node.children.forEach(sortChildren);
+  }
+
+  const root = nodeMap[rootId];
+  if (root) sortChildren(root);
+  return root;
+}
+
+function renderTreeGraph(data, highlightIds) {
+  const svg = d3.select("#graph");
+  svg.selectAll("*").remove();
+
+  const container = document.getElementById("graph-container");
+  const width = container.clientWidth;
+
+  // Find root node
+  const rootNode = data.nodes.find((n) => n.type === "ancestor");
+  if (!rootNode) return;
+
+  const hierarchy = buildHierarchy(data, rootNode.id);
+  if (!hierarchy) return;
+
+  const root = d3.hierarchy(hierarchy);
+
+  // Tree layout
+  const nodeSpacingX = 50;
+  const nodeSpacingY = 100;
+  const treeLayout = d3
+    .tree()
+    .nodeSize([nodeSpacingX, nodeSpacingY])
+    .separation((a, b) => (a.parent === b.parent ? 1 : 1.4));
+  treeLayout(root);
+
+  // Calculate bounds
+  let minX = Infinity,
+    maxX = -Infinity,
+    maxY = 0;
+  root.each((d) => {
+    minX = Math.min(minX, d.x);
+    maxX = Math.max(maxX, d.x);
+    maxY = Math.max(maxY, d.y);
+  });
+
+  const padding = 100;
+  const treeWidth = maxX - minX + padding * 2;
+  const treeHeight = maxY + padding * 2;
+  const svgHeight = Math.max(600, treeHeight);
+
+  svg.attr("viewBox", `${minX - padding} ${-padding} ${treeWidth} ${treeHeight}`);
+  svg.style("height", svgHeight + "px");
+
+  // Arrow marker for tree
+  svg
+    .append("defs")
+    .append("marker")
+    .attr("id", "tree-arrow")
+    .attr("viewBox", "0 -4 10 8")
+    .attr("refX", 15)
+    .attr("refY", 0)
+    .attr("markerWidth", 5)
+    .attr("markerHeight", 5)
+    .attr("orient", "auto")
+    .append("path")
+    .attr("d", "M0,-4L10,0L0,4")
+    .attr("fill", "#3d2e1a");
+
+  const g = svg.append("g");
+
+  // Zoom
+  const zoom = d3
+    .zoom()
+    .scaleExtent([0.1, 4])
+    .on("zoom", (event) => g.attr("transform", event.transform));
+  svg.call(zoom);
+
+  // Draw links as curved vertical paths
+  g.selectAll("path.tree-link")
+    .data(root.links())
+    .join("path")
+    .attr("class", "tree-link")
+    .attr(
+      "d",
+      d3
+        .linkVertical()
+        .x((d) => d.x)
+        .y((d) => d.y)
+    )
+    .attr("fill", "none")
+    .attr("stroke", "#3d2e1a")
+    .attr("stroke-width", (d) => {
+      const style = getEdgeStyle(d.target.data._reltype || "inherited_from");
+      return style.width;
+    })
+    .attr("stroke-dasharray", (d) => {
+      const style = getEdgeStyle(d.target.data._reltype || "inherited_from");
+      return style.dasharray;
+    })
+    .attr("marker-end", "url(#tree-arrow)");
+
+  // Draw nodes
+  const node = g
+    .selectAll("g.tree-node")
+    .data(root.descendants())
+    .join("g")
+    .attr("class", "tree-node")
+    .attr("transform", (d) => `translate(${d.x},${d.y})`);
+
+  // Tooltip events
+  node
+    .on("mouseenter", (event, d) => showTooltip(event, d.data))
+    .on("mousemove", (event) => positionTooltip(event))
+    .on("mouseleave", () => hideTooltip());
+
+  // Ancestor node: sun rays + rings
+  const ancestorNodes = node.filter((d) => d.data.type === "ancestor");
+  for (let i = 0; i < 8; i++) {
+    const angle = (i * Math.PI * 2) / 8;
+    const x1 = Math.cos(angle) * 18;
+    const y1 = Math.sin(angle) * 18;
+    const x2 = Math.cos(angle) * 28;
+    const y2 = Math.sin(angle) * 28;
+    ancestorNodes
+      .append("line")
+      .attr("x1", x1)
+      .attr("y1", y1)
+      .attr("x2", x2)
+      .attr("y2", y2)
+      .attr("stroke", "#c8a830")
+      .attr("stroke-width", 1.2)
+      .attr("opacity", 0.35);
+  }
+  ancestorNodes
+    .append("circle")
+    .attr("r", 20)
+    .attr("fill", "none")
+    .attr("stroke", "#c8a830")
+    .attr("stroke-width", 1)
+    .attr("stroke-dasharray", "3,3")
+    .attr("opacity", 0.4);
+
+  // All node circles
+  node
+    .append("circle")
+    .attr("r", (d) => {
+      if (d.data.type === "ancestor") return NODE_RADIUS.ancestor;
+      if (highlightIds && highlightIds.has(d.data.id)) return NODE_RADIUS.input;
+      return NODE_RADIUS.intermediate;
+    })
+    .attr("fill", (d) => getEraColor(d.data.lang))
+    .attr("filter", (d) => {
+      if (d.data.type === "ancestor") return "url(#glow-gold)";
+      if (highlightIds && highlightIds.has(d.data.id)) return "url(#glow-amber)";
+      return null;
+    })
+    .attr("stroke", (d) =>
+      highlightIds && highlightIds.has(d.data.id) ? "#c8a830" : null
+    )
+    .attr("stroke-width", (d) =>
+      highlightIds && highlightIds.has(d.data.id) ? 2 : 0
+    );
+
+  // Term labels
+  node
+    .append("text")
+    .attr("class", (d) =>
+      highlightIds && highlightIds.has(d.data.id)
+        ? "node-label node-label-highlight"
+        : "node-label"
+    )
+    .attr("dy", -14)
+    .attr("text-anchor", "middle")
+    .text((d) => d.data.term);
+
+  // Language labels
+  node
+    .append("text")
+    .attr("class", "lang-label")
+    .attr("dy", (d) => {
+      const r =
+        d.data.type === "ancestor"
+          ? NODE_RADIUS.ancestor
+          : highlightIds && highlightIds.has(d.data.id)
+            ? NODE_RADIUS.input
+            : NODE_RADIUS.intermediate;
+      return r + 12;
+    })
+    .attr("text-anchor", "middle")
+    .text((d) => LANG_NAMES[d.data.lang] || d.data.lang);
+
+  // Auto-zoom to fit
+  setTimeout(() => {
+    const bounds = g.node().getBBox();
+    const fullWidth = bounds.width + 100;
+    const fullHeight = bounds.height + 100;
+    const scale = Math.min(width / fullWidth, svgHeight / fullHeight, 1);
+    const tx = width / 2 - scale * (bounds.x + bounds.width / 2);
+    const ty = svgHeight / 2 - scale * (bounds.y + bounds.height / 2);
+    svg.call(
+      zoom.transform,
+      d3.zoomIdentity.translate(tx, ty).scale(scale)
+    );
+  }, 100);
+}

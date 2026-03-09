@@ -409,6 +409,7 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
                 message=f"Cognates! '{bridge_a[0]}' ({_lang_display(bridge_a[1])}) \u2194 '{bridge_b[0]}' ({_lang_display(bridge_b[1])}) via {bridge_reltype.replace('_', ' ')}",
                 summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb share a common origin \u2014 connected through {_lang_display(bridge_a[1])} {bridge_a[0]}.",
                 confidence="medium",
+                ancestor_lang_code=bridge_a[1],
             )
 
         # Fuzzy fallback: match proto-ancestors by normalized root
@@ -427,6 +428,7 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
                 message=f"Cognates! Common root: '{proto_a[0]}' / '{proto_b[0]}' ({_lang_display(proto_a[1])})",
                 summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb likely share the same root: {proto_a[0]} / {proto_b[0]} ({_lang_display(proto_a[1])}).",
                 confidence=fuzzy_confidence,
+                ancestor_lang_code=proto_a[1],
             )
 
         graph_a = _build_single_tree(word_a, ancestors_a)
@@ -474,6 +476,7 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
         message=f"Cognates! Common ancestor: '{best[0]}' ({_lang_display(best[1])})",
         summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb are related! Both descend from the {_lang_display(best[1])} root {best[0]}{era_str}.",
         confidence=direct_confidence,
+        ancestor_lang_code=best[1],
     )
 
 
@@ -576,3 +579,75 @@ def _add_path_to_graph(
         )
         if not any(l.source == link.source and l.target == link.target for l in links):
             links.append(link)
+
+
+def get_descendant_tree(
+    root: tuple[str, str], max_nodes: int = 300, max_depth: int = 6,
+) -> GraphData:
+    """Reverse BFS from ancestor node to find all descendants."""
+    conn = get_connection()
+
+    nodes_set: dict[tuple[str, str], str] = {root: "ancestor"}
+    links: list[GraphLink] = []
+    queue = deque([(root, 0)])
+    visited = {root}
+
+    placeholders = ",".join("?" * len(STRONG_RELTYPES))
+    params = tuple(STRONG_RELTYPES)
+
+    while queue and len(nodes_set) < max_nodes:
+        current, depth = queue.popleft()
+        if depth >= max_depth:
+            continue
+
+        term, lang = current
+
+        # Build variants for proto-lang asterisk handling
+        variants = [term]
+        if lang in PROTO_LANGS:
+            if term.startswith("*"):
+                variants.append(term.lstrip("*"))
+            else:
+                variants.append("*" + term)
+
+        all_rows = []
+        for t in variants:
+            rows = conn.execute(
+                f"SELECT term, lang, reltype FROM etymologies "
+                f"WHERE related_term = ? AND related_lang = ? AND reltype IN ({placeholders})",
+                (t, lang, *params),
+            ).fetchall()
+            all_rows.extend(rows)
+
+        # Deduplicate
+        seen = set()
+        for row in all_rows:
+            child = (row["term"], row["lang"])
+            key = (child, row["reltype"])
+            if key in seen:
+                continue
+            seen.add(key)
+
+            # Link from parent to child (descent direction)
+            source_id = f"{current[0]}|{current[1]}"
+            target_id = f"{row['term']}|{row['lang']}"
+            link = GraphLink(source=source_id, target=target_id, reltype=row["reltype"])
+            if not any(l.source == link.source and l.target == link.target for l in links):
+                links.append(link)
+
+            if child not in visited:
+                visited.add(child)
+                if len(nodes_set) >= max_nodes:
+                    break
+                nodes_set[child] = "intermediate"
+                queue.append((child, depth + 1))
+
+    conn.close()
+
+    nodes = [
+        GraphNode(id=f"{t}|{l}", term=t, lang=l, type=ntype)
+        for (t, l), ntype in nodes_set.items()
+    ]
+    graph = GraphData(nodes=nodes, links=links)
+    _enrich_with_translations(graph)
+    return graph

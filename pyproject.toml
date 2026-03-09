@@ -8,3 +8,8 @@ dependencies = [
     "uvicorn[standard]",
     "httpx",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.2",
+]

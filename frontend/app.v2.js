@@ -13,6 +13,12 @@ const graphContainer = document.getElementById("graph-container");
 const graphLegend = document.getElementById("graph-legend");
 const howToRead = document.getElementById("how-to-read");
 
+// State for tree view toggle
+let lastPathGraphData = null;
+let lastAncestorTerm = null;
+let lastAncestorLangCode = null;
+let isTreeView = false;
+
 // Example pairs
 const EXAMPLE_PAIRS = [
   { a: "мать", langA: "ru", b: "mother", langB: "en" },
@@ -189,6 +195,8 @@ form.addEventListener("submit", async (e) => {
   if (!a || !b) return;
 
   checkBtn.disabled = true;
+  isTreeView = false;
+  graphContainer.classList.remove("tree-view");
   resultDiv.className = "result";
   resultDiv.innerHTML = '<span class="loading"></span> Searching for connections...';
   resultDiv.classList.remove("hidden");
@@ -211,16 +219,26 @@ form.addEventListener("submit", async (e) => {
       resultDiv.className = "result cognate";
       const badge = confidenceBadge(data.confidence);
       const summary = data.summary || data.message;
+      const treeBtn = data.ancestor_lang_code
+        ? `<button type="button" class="show-tree-btn" id="show-tree-btn">Show full descendant tree</button>`
+        : "";
       resultDiv.innerHTML = `
         <div class="summary-banner">${badge} ${summary}</div>
         <div class="ancestor-detail">
           Common ancestor: <strong>${data.common_ancestor}</strong> (${data.ancestor_lang})
+          ${treeBtn}
         </div>
       `;
       if (data.graph) {
+        lastPathGraphData = data.graph;
+        lastAncestorTerm = data.common_ancestor;
+        lastAncestorLangCode = data.ancestor_lang_code;
         graphContainer.classList.add("active");
         renderGraph(data.graph);
         showLegend();
+      }
+      if (data.ancestor_lang_code) {
+        document.getElementById("show-tree-btn").addEventListener("click", loadFullTree);
       }
     } else {
       resultDiv.className = "result not-cognate";
@@ -251,3 +269,49 @@ form.addEventListener("submit", async (e) => {
     checkBtn.disabled = false;
   }
 });
+
+// Full tree expansion
+async function loadFullTree() {
+  if (!lastAncestorTerm || !lastAncestorLangCode) return;
+
+  const btn = document.getElementById("show-tree-btn");
+  btn.disabled = true;
+  btn.textContent = "Loading tree...";
+
+  try {
+    const url = `${API}api/tree?term=${encodeURIComponent(lastAncestorTerm)}&lang=${encodeURIComponent(lastAncestorLangCode)}`;
+    const res = await fetch(url);
+    const treeData = await res.json();
+
+    isTreeView = true;
+    graphContainer.classList.add("tree-view");
+
+    // Highlight the two input words
+    const highlightIds = new Set([
+      `${wordA.value.trim()}|${langA.value}`,
+      `${wordB.value.trim()}|${langB.value}`,
+    ]);
+
+    renderTreeGraph(treeData, highlightIds);
+    btn.textContent = "Back to path view";
+    btn.disabled = false;
+    btn.removeEventListener("click", loadFullTree);
+    btn.addEventListener("click", backToPathView);
+  } catch (err) {
+    btn.textContent = "Error loading tree";
+    btn.disabled = false;
+  }
+}
+
+function backToPathView() {
+  if (!lastPathGraphData) return;
+
+  isTreeView = false;
+  graphContainer.classList.remove("tree-view");
+  renderGraph(lastPathGraphData);
+
+  const btn = document.getElementById("show-tree-btn");
+  btn.textContent = "Show full descendant tree";
+  btn.removeEventListener("click", backToPathView);
+  btn.addEventListener("click", loadFullTree);
+}
