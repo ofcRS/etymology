@@ -58,6 +58,17 @@ LANG_NAMES = {
     "la-lat": "Late Latin",
 }
 
+ERA_APPROX = {
+    "ine-pro": "around 4500\u20132500 BCE",
+    "gem-pro": "around 500 BCE",
+    "sla-pro": "around 500 CE",
+    "ine-bsl-pro": "around 1500 BCE",
+    "iir-pro": "around 2000 BCE",
+    "gmw-pro": "around 200 CE",
+    "itc-pro": "around 1000 BCE",
+    "grk-pro": "around 2000 BCE",
+}
+
 MAX_BFS_DEPTH = 12
 
 STRONG_RELTYPES = {
@@ -70,6 +81,26 @@ WEAK_RELTYPES = {"cognate_of", "doublet_with", "etymologically_related_to"}
 
 def _lang_display(code: str) -> str:
     return LANG_NAMES.get(code, code)
+
+
+def _deepest_proto_ancestor(word, ancestors):
+    """Find the most ancestral proto-language node."""
+    best = None
+    best_score = (3, 0)
+    for node, path in ancestors.items():
+        if node == word:
+            continue
+        if node[1] == "ine-pro":
+            priority = 0
+        elif node[1] in PROTO_LANGS:
+            priority = 1
+        else:
+            continue
+        score = (priority, len(path))
+        if score < best_score:
+            best_score = score
+            best = node
+    return best
 
 
 def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
@@ -375,7 +406,9 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
                 common_ancestor=bridge_a[0],
                 ancestor_lang=_lang_display(bridge_a[1]),
                 graph=graph_data,
-                message=f"Cognates! '{bridge_a[0]}' ({_lang_display(bridge_a[1])}) ↔ '{bridge_b[0]}' ({_lang_display(bridge_b[1])}) via {bridge_reltype.replace('_', ' ')}",
+                message=f"Cognates! '{bridge_a[0]}' ({_lang_display(bridge_a[1])}) \u2194 '{bridge_b[0]}' ({_lang_display(bridge_b[1])}) via {bridge_reltype.replace('_', ' ')}",
+                summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb share a common origin \u2014 connected through {_lang_display(bridge_a[1])} {bridge_a[0]}.",
+                confidence="medium",
             )
 
         # Fuzzy fallback: match proto-ancestors by normalized root
@@ -385,21 +418,35 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
             graph_data = _build_fuzzy_graph_data(
                 word_a, word_b, proto_a, proto_b, ancestors_a, ancestors_b
             )
+            fuzzy_confidence = "medium" if proto_a[1] == proto_b[1] else "low"
             return CognateResponse(
                 is_cognate=True,
                 common_ancestor=proto_a[0],
                 ancestor_lang=_lang_display(proto_a[1]),
                 graph=graph_data,
                 message=f"Cognates! Common root: '{proto_a[0]}' / '{proto_b[0]}' ({_lang_display(proto_a[1])})",
+                summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb likely share the same root: {proto_a[0]} / {proto_b[0]} ({_lang_display(proto_a[1])}).",
+                confidence=fuzzy_confidence,
             )
 
         graph_a = _build_single_tree(word_a, ancestors_a)
         graph_b = _build_single_tree(word_b, ancestors_b)
+        root_a = _deepest_proto_ancestor(word_a, ancestors_a)
+        root_b = _deepest_proto_ancestor(word_b, ancestors_b)
+        if root_a and root_b:
+            not_cognate_summary = (
+                f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb have separate origins. "
+                f"\u00ab{word_a[0]}\u00bb traces back to {root_a[0]} ({_lang_display(root_a[1])}), "
+                f"while \u00ab{word_b[0]}\u00bb comes from {root_b[0]} ({_lang_display(root_b[1])})."
+            )
+        else:
+            not_cognate_summary = f"No common ancestor found between \u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb."
         return CognateResponse(
             is_cognate=False,
             graph_a=graph_a,
             graph_b=graph_b,
             message=f"No common ancestor found between '{word_a[0]}' and '{word_b[0]}'.",
+            summary=not_cognate_summary,
         )
 
     def score(node: tuple[str, str]) -> tuple[int, int]:
@@ -415,12 +462,18 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
     best = min(common, key=score)
     graph_data = _build_graph_data(word_a, word_b, best, ancestors_a, ancestors_b)
 
+    era = ERA_APPROX.get(best[1], "")
+    era_str = f", spoken {era}" if era else ""
+    path_len = len(ancestors_a[best]) + len(ancestors_b[best])
+    direct_confidence = "high" if best[1] in PROTO_LANGS and path_len <= 8 else "medium"
     return CognateResponse(
         is_cognate=True,
         common_ancestor=best[0],
         ancestor_lang=_lang_display(best[1]),
         graph=graph_data,
         message=f"Cognates! Common ancestor: '{best[0]}' ({_lang_display(best[1])})",
+        summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb are related! Both descend from the {_lang_display(best[1])} root {best[0]}{era_str}.",
+        confidence=direct_confidence,
     )
 
 

@@ -38,6 +38,13 @@
             <div class="ornament ornament-bottom" aria-hidden="true">◆ ◈ ◆</div>
         </header>
 
+        <div class="examples-section">
+            <div class="example-chips" id="example-chips"></div>
+            <button type="button" id="random-btn" class="random-btn">Random pair</button>
+        </div>
+
+        <div class="fun-fact" id="fun-fact"></div>
+
         <div class="scroll-panel">
             <form id="cognate-form">
                 <div class="input-row">
@@ -46,22 +53,22 @@
                         <div class="input-with-lang">
                             <input type="text" id="word-a" placeholder="e.g. water" autocomplete="off" required>
                             <select id="lang-a">
-                                <option value="en">EN</option>
-                                <option value="ru">RU</option>
-                                <option value="de">DE</option>
-                                <option value="fr">FR</option>
-                                <option value="es">ES</option>
-                                <option value="it">IT</option>
-                                <option value="pt">PT</option>
-                                <option value="nl">NL</option>
-                                <option value="pl">PL</option>
-                                <option value="cs">CS</option>
-                                <option value="la">LA</option>
-                                <option value="grc">GRC</option>
-                                <option value="el">EL</option>
-                                <option value="hy">HY</option>
-                                <option value="fa">FA</option>
-                                <option value="ar">AR</option>
+                                <option value="en">English</option>
+                                <option value="ru">Russian</option>
+                                <option value="de">German</option>
+                                <option value="fr">French</option>
+                                <option value="es">Spanish</option>
+                                <option value="it">Italian</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="nl">Dutch</option>
+                                <option value="pl">Polish</option>
+                                <option value="cs">Czech</option>
+                                <option value="la">Latin</option>
+                                <option value="grc">Ancient Greek</option>
+                                <option value="el">Greek</option>
+                                <option value="hy">Armenian</option>
+                                <option value="fa">Persian</option>
+                                <option value="ar">Arabic</option>
                             </select>
                         </div>
                         <ul class="suggestions" id="suggestions-a"></ul>
@@ -72,22 +79,22 @@
                         <div class="input-with-lang">
                             <input type="text" id="word-b" placeholder="e.g. вода" autocomplete="off" required>
                             <select id="lang-b">
-                                <option value="ru">RU</option>
-                                <option value="en">EN</option>
-                                <option value="de">DE</option>
-                                <option value="fr">FR</option>
-                                <option value="es">ES</option>
-                                <option value="it">IT</option>
-                                <option value="pt">PT</option>
-                                <option value="nl">NL</option>
-                                <option value="pl">PL</option>
-                                <option value="cs">CS</option>
-                                <option value="la">LA</option>
-                                <option value="grc">GRC</option>
-                                <option value="el">EL</option>
-                                <option value="hy">HY</option>
-                                <option value="fa">FA</option>
-                                <option value="ar">AR</option>
+                                <option value="ru">Russian</option>
+                                <option value="en">English</option>
+                                <option value="de">German</option>
+                                <option value="fr">French</option>
+                                <option value="es">Spanish</option>
+                                <option value="it">Italian</option>
+                                <option value="pt">Portuguese</option>
+                                <option value="nl">Dutch</option>
+                                <option value="pl">Polish</option>
+                                <option value="cs">Czech</option>
+                                <option value="la">Latin</option>
+                                <option value="grc">Ancient Greek</option>
+                                <option value="el">Greek</option>
+                                <option value="hy">Armenian</option>
+                                <option value="fa">Persian</option>
+                                <option value="ar">Arabic</option>
                             </select>
                         </div>
                         <ul class="suggestions" id="suggestions-b"></ul>
@@ -103,6 +110,73 @@
         <div id="graph-container">
             <svg id="graph"></svg>
         </div>
+
+        <div id="graph-legend" class="graph-legend hidden">
+            <h3 class="legend-title">Legend</h3>
+            <div class="legend-grid">
+                <div class="legend-section">
+                    <h4>Connections</h4>
+                    <div class="legend-item">
+                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2"/></svg>
+                        <span>Natural evolution (inherited, derived)</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="8,4"/></svg>
+                        <span>Borrowing (loanword)</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="3,3"/></svg>
+                        <span>Cognate link (same root)</span>
+                    </div>
+                </div>
+                <div class="legend-section">
+                    <h4>Eras</h4>
+                    <div class="legend-item">
+                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#c8a830"/></svg>
+                        <span>Proto-languages (before 1500 BCE)</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#a07840"/></svg>
+                        <span>Ancient languages (2000 BCE - 500 CE)</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#7a6850"/></svg>
+                        <span>Medieval languages (500 - 1500 CE)</span>
+                    </div>
+                    <div class="legend-item">
+                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#5a8a6a"/></svg>
+                        <span>Modern languages (present day)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <details class="how-to-read hidden" id="how-to-read">
+            <summary>How to read this graph</summary>
+            <div class="how-to-read-content">
+                <p><strong>PIE</strong> stands for <em>Proto-Indo-European</em> — the reconstructed common ancestor of most European and many Asian languages, spoken roughly 4500-2500 BCE.</p>
+                <p>The <strong>*</strong> before a word (like *wodr) means it is <em>reconstructed</em> — no written records exist, but linguists infer its form from descendant languages.</p>
+                <p><strong>Arrows</strong> show the direction of descent: an arrow from A to B means "B evolved from A" or "B was borrowed from A."</p>
+                <div class="timeline-bar">
+                    <div class="timeline-era" style="background: #c8a830;">
+                        <span class="timeline-label">PIE</span>
+                        <span class="timeline-date">~4500 BCE</span>
+                    </div>
+                    <div class="timeline-era" style="background: #a07840;">
+                        <span class="timeline-label">Latin / Greek</span>
+                        <span class="timeline-date">~500 BCE</span>
+                    </div>
+                    <div class="timeline-era" style="background: #7a6850;">
+                        <span class="timeline-label">Old English / Old French</span>
+                        <span class="timeline-date">~800 CE</span>
+                    </div>
+                    <div class="timeline-era" style="background: #5a8a6a;">
+                        <span class="timeline-label">Modern languages</span>
+                        <span class="timeline-date">today</span>
+                    </div>
+                </div>
+            </div>
+        </details>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>

@@ -38,6 +38,8 @@ class CognateResponse(BaseModel):
     graph_a: GraphData | None = None
     graph_b: GraphData | None = None
     message: str
+    summary: str | None = None
+    confidence: str | None = None
 
 
 class SearchResult(BaseModel):

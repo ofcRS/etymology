@@ -46,17 +46,147 @@ const LANG_NAMES = {
   "la-lat": "Late Latin",
 };
 
-const NODE_COLORS = {
-  input: "#8b6530",
-  ancestor: "#c8a830",
-  intermediate: "#5a4428",
+// Human-readable edge labels
+const HUMAN_LABELS = {
+  inherited_from: "evolved from",
+  derived_from: "derived from",
+  borrowed_from: "borrowed from",
+  has_root: "from root",
+  learned_borrowing_from: "scholarly borrowing",
+  semi_learned_borrowing_from: "semi-learned borrowing",
+  unadapted_borrowing_from: "direct borrowing",
+  orthographic_borrowing_from: "spelling borrowing",
+  cognate_of: "same root as",
+  doublet_with: "doublet of",
+  etymologically_related_to: "related to",
+  same_root: "same root as",
 };
+
+// Edge style categories
+const EVOLUTION_EDGES = new Set(["inherited_from", "derived_from", "has_root"]);
+const BORROWING_EDGES = new Set([
+  "borrowed_from",
+  "learned_borrowing_from",
+  "semi_learned_borrowing_from",
+  "unadapted_borrowing_from",
+  "orthographic_borrowing_from",
+]);
+const COGNATE_EDGES = new Set([
+  "cognate_of",
+  "same_root",
+  "doublet_with",
+  "etymologically_related_to",
+]);
+
+function getEdgeStyle(reltype) {
+  if (EVOLUTION_EDGES.has(reltype)) return { dasharray: "none", width: 2 };
+  if (BORROWING_EDGES.has(reltype)) return { dasharray: "8,4", width: 2 };
+  if (COGNATE_EDGES.has(reltype)) return { dasharray: "3,3", width: 2 };
+  return { dasharray: "none", width: 1.5 };
+}
+
+// Era-based color coding
+const ERA_COLORS = {
+  proto: "#c8a830",
+  ancient: "#a07840",
+  medieval: "#7a6850",
+  modern: "#5a8a6a",
+};
+
+const ANCIENT_LANGS = new Set([
+  "ang",
+  "la",
+  "lla",
+  "grc",
+  "sa",
+  "cu",
+  "non",
+  "fro",
+  "xno",
+  "goh",
+  "osx",
+  "odt",
+  "peo",
+  "xcl",
+  "la-lat",
+]);
+
+const MEDIEVAL_LANGS = new Set([
+  "enm",
+  "frm",
+  "gmh",
+  "gml",
+  "dum",
+  "orv",
+  "la-med",
+  "la-new",
+]);
+
+function getEraColor(lang) {
+  if (lang.endsWith("-pro")) return ERA_COLORS.proto;
+  if (ANCIENT_LANGS.has(lang)) return ERA_COLORS.ancient;
+  if (MEDIEVAL_LANGS.has(lang)) return ERA_COLORS.medieval;
+  return ERA_COLORS.modern;
+}
 
 const NODE_RADIUS = {
   input: 10,
   ancestor: 14,
   intermediate: 7,
 };
+
+// Tooltip
+let tooltip = document.getElementById("graph-tooltip");
+if (!tooltip) {
+  tooltip = document.createElement("div");
+  tooltip.id = "graph-tooltip";
+  tooltip.className = "graph-tooltip";
+  document.body.appendChild(tooltip);
+}
+
+function getNodeDescription(d) {
+  const langName = LANG_NAMES[d.lang] || d.lang;
+  if (d.type === "ancestor")
+    return "Proto-root \u2014 the oldest known ancestor of these words";
+  if (d.type === "input")
+    return `Modern ${langName} word you searched for`;
+  return `Historical ${langName} form \u2014 an intermediate step in the word's evolution`;
+}
+
+function showTooltip(event, d) {
+  const langName = LANG_NAMES[d.lang] || d.lang;
+  let html = `<strong>${d.term}</strong> <span class="tooltip-lang">(${langName})</span>`;
+  html += `<div class="tooltip-desc">${getNodeDescription(d)}</div>`;
+  if (d.translations && Object.keys(d.translations).length > 0) {
+    const trans = Object.entries(d.translations)
+      .slice(0, 4)
+      .map(
+        ([lang, term]) =>
+          `${term} <span class="tooltip-lang">(${LANG_NAMES[lang] || lang})</span>`
+      )
+      .join(", ");
+    html += `<div class="tooltip-trans">Modern reflexes: ${trans}</div>`;
+  }
+  tooltip.innerHTML = html;
+  tooltip.style.display = "block";
+  positionTooltip(event);
+}
+
+function positionTooltip(event) {
+  const pad = 12;
+  let x = event.pageX + pad;
+  let y = event.pageY + pad;
+  const rect = tooltip.getBoundingClientRect();
+  if (x + rect.width > window.innerWidth) x = event.pageX - rect.width - pad;
+  if (y + rect.height > window.innerHeight)
+    y = event.pageY - rect.height - pad;
+  tooltip.style.left = x + "px";
+  tooltip.style.top = y + "px";
+}
+
+function hideTooltip() {
+  tooltip.style.display = "none";
+}
 
 function renderGraph(data) {
   const svg = d3.select("#graph");
@@ -106,7 +236,7 @@ function renderGraph(data) {
     .force("center", d3.forceCenter(width / 2, height / 2))
     .force("collision", d3.forceCollide().radius(30));
 
-  // Links
+  // Links with edge style categories
   const link = g
     .append("g")
     .selectAll("line")
@@ -114,18 +244,20 @@ function renderGraph(data) {
     .join("line")
     .attr("class", "link")
     .attr("stroke", "#3d2e1a")
-    .attr("stroke-width", 1.5)
-    .attr("stroke-dasharray", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "5,3" : "none")
-    .attr("marker-end", (d) => ["same_root", "cognate_of"].includes(d.reltype) ? "none" : "url(#arrowhead)");
+    .attr("stroke-width", (d) => getEdgeStyle(d.reltype).width)
+    .attr("stroke-dasharray", (d) => getEdgeStyle(d.reltype).dasharray)
+    .attr("marker-end", (d) =>
+      COGNATE_EDGES.has(d.reltype) ? "none" : "url(#arrowhead)"
+    );
 
-  // Link labels
+  // Link labels with human-readable names
   const linkLabel = g
     .append("g")
     .selectAll("text")
     .data(data.links)
     .join("text")
     .attr("class", "link-label")
-    .text((d) => d.reltype.replace(/_/g, " "));
+    .text((d) => HUMAN_LABELS[d.reltype] || d.reltype.replace(/_/g, " "));
 
   // Node groups
   const node = g
@@ -152,11 +284,16 @@ function renderGraph(data) {
         })
     );
 
-  // Type-specific node rendering
-  // Ancestor nodes: gold circle + glow + dashed outer ring + sun rays
+  // Tooltip events
+  node
+    .on("mouseenter", (event, d) => showTooltip(event, d))
+    .on("mousemove", (event) => positionTooltip(event))
+    .on("mouseleave", () => hideTooltip());
+
+  // Type-specific node rendering with era colors
   const ancestors = node.filter((d) => d.type === "ancestor");
 
-  // Sun-ray lines (8 rays)
+  // Sun-ray lines (8 rays) — always gold for visual distinction
   for (let i = 0; i < 8; i++) {
     const angle = (i * Math.PI * 2) / 8;
     const x1 = Math.cos(angle) * 18;
@@ -184,27 +321,27 @@ function renderGraph(data) {
     .attr("stroke-dasharray", "3,3")
     .attr("opacity", 0.4);
 
-  // Main circle with glow
+  // Main circle with glow — era-colored
   ancestors
     .append("circle")
     .attr("r", NODE_RADIUS.ancestor)
-    .attr("fill", NODE_COLORS.ancestor)
+    .attr("fill", (d) => getEraColor(d.lang))
     .attr("filter", "url(#glow-gold)");
 
-  // Input nodes: bronze circle + amber glow
+  // Input nodes: era-colored circle + amber glow
   const inputs = node.filter((d) => d.type === "input");
   inputs
     .append("circle")
     .attr("r", NODE_RADIUS.input)
-    .attr("fill", NODE_COLORS.input)
+    .attr("fill", (d) => getEraColor(d.lang))
     .attr("filter", "url(#glow-amber)");
 
-  // Intermediate nodes: muted wood circle, no glow
+  // Intermediate nodes: era-colored circle, no glow
   const intermediates = node.filter((d) => d.type === "intermediate");
   intermediates
     .append("circle")
     .attr("r", NODE_RADIUS.intermediate)
-    .attr("fill", NODE_COLORS.intermediate);
+    .attr("fill", (d) => getEraColor(d.lang));
 
   // Term labels
   node
