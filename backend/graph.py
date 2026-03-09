@@ -60,8 +60,12 @@ LANG_NAMES = {
 
 MAX_BFS_DEPTH = 12
 
-STRONG_RELTYPES = {"inherited_from", "derived_from", "borrowed_from", "has_root"}
-WEAK_RELTYPES = {"cognate_of"}
+STRONG_RELTYPES = {
+    "inherited_from", "derived_from", "borrowed_from", "has_root",
+    "learned_borrowing_from", "semi_learned_borrowing_from",
+    "unadapted_borrowing_from", "orthographic_borrowing_from",
+}
+WEAK_RELTYPES = {"cognate_of", "doublet_with", "etymologically_related_to"}
 
 
 def _lang_display(code: str) -> str:
@@ -86,6 +90,14 @@ def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
             "SELECT related_term, related_lang, reltype FROM etymologies WHERE term = ? AND lang = ?",
             (term, lang),
         ).fetchall()
+
+        # Proto-language terms are stored with * as related_term but without * as term
+        if term.startswith("*") and lang in PROTO_LANGS:
+            rows2 = conn.execute(
+                "SELECT related_term, related_lang, reltype FROM etymologies WHERE term = ? AND lang = ?",
+                (term.lstrip("*"), lang),
+            ).fetchall()
+            rows = list(rows) + list(rows2)
 
         for row in rows:
             if row["reltype"] not in STRONG_RELTYPES:
@@ -113,6 +125,10 @@ def _normalize_proto_root(term: str) -> str:
         if t.endswith(suffix) and len(t) > len(suffix):
             t = t[: -len(suffix)]
             break
+    # Strip PIE laryngeals (h₁, h₂, h₃)
+    t = re.sub(r'h[₁₂₃]', '', t)
+    # Strip subscript digits
+    t = re.sub(r'[₀₁₂₃₄₅₆₇₈₉]', '', t)
     # Strip diacritics: NFD decompose then remove combining marks
     nfd = unicodedata.normalize("NFD", t)
     t = re.sub(r"[\u0300-\u036f]", "", nfd)
@@ -138,7 +154,29 @@ def _fuzzy_match_proto_ancestors(
 
     common_keys = set(index_a.keys()) & set(index_b.keys())
     if not common_keys:
-        return None
+        # Cross-language fallback: match on normalized root only (ignoring lang)
+        cross_a: dict[str, list[tuple[str, str]]] = {}
+        for (root, lang), nodes in index_a.items():
+            if len(root) >= 3:
+                cross_a.setdefault(root, []).extend(nodes)
+        cross_b: dict[str, list[tuple[str, str]]] = {}
+        for (root, lang), nodes in index_b.items():
+            if len(root) >= 3:
+                cross_b.setdefault(root, []).extend(nodes)
+        cross_common = set(cross_a.keys()) & set(cross_b.keys())
+        if not cross_common:
+            return None
+
+        def cross_score(root):
+            best_len = min(len(ancestors_a[n]) for n in cross_a[root]) + min(
+                len(ancestors_b[n]) for n in cross_b[root]
+            )
+            return best_len
+
+        best_root = min(cross_common, key=cross_score)
+        node_a = min(cross_a[best_root], key=lambda n: len(ancestors_a[n]))
+        node_b = min(cross_b[best_root], key=lambda n: len(ancestors_b[n]))
+        return (node_a, node_b)
 
     def score(key):
         lang = key[1]
@@ -211,12 +249,15 @@ def _find_weak_bridge(
     best = None
     best_score = (3, float("inf"))
 
+    placeholders = ",".join("?" * len(WEAK_RELTYPES))
+    weak_params = tuple(WEAK_RELTYPES)
+
     for node in set_a:
         term, lang = node
         rows = conn.execute(
-            "SELECT related_term, related_lang, reltype FROM etymologies "
-            "WHERE term = ? AND lang = ? AND reltype = 'cognate_of'",
-            (term, lang),
+            f"SELECT related_term, related_lang, reltype FROM etymologies "
+            f"WHERE term = ? AND lang = ? AND reltype IN ({placeholders})",
+            (term, lang, *weak_params),
         ).fetchall()
         for row in rows:
             neighbor = (row["related_term"], row["related_lang"])
@@ -233,13 +274,13 @@ def _find_weak_bridge(
                     best_score = score
                     best = (node, neighbor, row["reltype"])
 
-    # Also check reverse direction: nodes in B having cognate_of edges to nodes in A
+    # Also check reverse direction: nodes in B having weak edges to nodes in A
     for node in set_b:
         term, lang = node
         rows = conn.execute(
-            "SELECT related_term, related_lang, reltype FROM etymologies "
-            "WHERE term = ? AND lang = ? AND reltype = 'cognate_of'",
-            (term, lang),
+            f"SELECT related_term, related_lang, reltype FROM etymologies "
+            f"WHERE term = ? AND lang = ? AND reltype IN ({placeholders})",
+            (term, lang, *weak_params),
         ).fetchall()
         for row in rows:
             neighbor = (row["related_term"], row["related_lang"])
