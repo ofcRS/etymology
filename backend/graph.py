@@ -79,6 +79,12 @@ STRONG_RELTYPES = {
 WEAK_RELTYPES = {"cognate_of", "doublet_with", "etymologically_related_to"}
 
 
+def _strip_diacritics(text: str) -> str:
+    """Strip combining diacritical marks (accents) from text."""
+    nfd = unicodedata.normalize("NFD", text)
+    return re.sub(r"[\u0300-\u036f]", "", nfd)
+
+
 def _lang_display(code: str) -> str:
     return LANG_NAMES.get(code, code)
 
@@ -122,13 +128,17 @@ def _bfs_ancestors(start: tuple[str, str]) -> dict[tuple[str, str], list]:
             (term, lang),
         ).fetchall()
 
-        # Proto-language terms are stored with * as related_term but without * as term
-        if term.startswith("*") and lang in PROTO_LANGS:
-            rows2 = conn.execute(
-                "SELECT related_term, related_lang, reltype FROM etymologies WHERE term = ? AND lang = ?",
-                (term.lstrip("*"), lang),
-            ).fetchall()
-            rows = list(rows) + list(rows2)
+        # Proto-language terms: try without *, and also without diacritics
+        if lang in PROTO_LANGS:
+            bare = term.lstrip("*")
+            stripped = _strip_diacritics(bare)
+            variants = {bare, stripped} - {term}
+            for variant in variants:
+                extra = conn.execute(
+                    "SELECT related_term, related_lang, reltype FROM etymologies WHERE term = ? AND lang = ?",
+                    (variant, lang),
+                ).fetchall()
+                rows = list(rows) + list(extra)
 
         for row in rows:
             if row["reltype"] not in STRONG_RELTYPES:
@@ -347,11 +357,26 @@ def _build_weak_bridge_graph_data(
 
     nodes_set[word_a] = "input"
     nodes_set[word_b] = "input"
-    nodes_set[bridge_a] = "ancestor"
-    nodes_set[bridge_b] = "ancestor"
+    # Only mark proto-lang bridge nodes as ancestor; modern words stay intermediate
+    if bridge_a not in nodes_set:
+        nodes_set[bridge_a] = "ancestor" if bridge_a[1] in PROTO_LANGS else "intermediate"
+    if bridge_b not in nodes_set:
+        nodes_set[bridge_b] = "ancestor" if bridge_b[1] in PROTO_LANGS else "intermediate"
 
     _add_path_to_graph(ancestors_a[bridge_a], bridge_a, nodes_set, links)
     _add_path_to_graph(ancestors_b[bridge_b], bridge_b, nodes_set, links)
+
+    # When bridge nodes are modern words, also show ancestry paths to proto ancestors
+    if bridge_a[1] not in PROTO_LANGS:
+        proto_a = _deepest_proto_ancestor(word_a, ancestors_a)
+        if proto_a and proto_a not in nodes_set:
+            nodes_set[proto_a] = "ancestor"
+            _add_path_to_graph(ancestors_a[proto_a], proto_a, nodes_set, links)
+    if bridge_b[1] not in PROTO_LANGS:
+        proto_b = _deepest_proto_ancestor(word_b, ancestors_b)
+        if proto_b and proto_b not in nodes_set:
+            nodes_set[proto_b] = "ancestor"
+            _add_path_to_graph(ancestors_b[proto_b], proto_b, nodes_set, links)
 
     links.append(
         GraphLink(
@@ -401,15 +426,33 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
                 word_a, word_b, bridge_a, bridge_b, bridge_reltype,
                 ancestors_a, ancestors_b,
             )
+            # Find the real proto-language ancestor (not a modern word)
+            if bridge_a[1] in PROTO_LANGS:
+                real_ancestor = bridge_a
+            elif bridge_b[1] in PROTO_LANGS:
+                real_ancestor = bridge_b
+            else:
+                # Neither bridge node is proto — find deepest proto ancestor from either side
+                real_ancestor = _deepest_proto_ancestor(word_a, ancestors_a) or _deepest_proto_ancestor(word_b, ancestors_b)
+            if real_ancestor:
+                ancestor_term = real_ancestor[0]
+                ancestor_lang = _lang_display(real_ancestor[1])
+                ancestor_code = real_ancestor[1]
+                confidence = "medium"
+            else:
+                ancestor_term = bridge_a[0]
+                ancestor_lang = _lang_display(bridge_a[1])
+                ancestor_code = bridge_a[1]
+                confidence = "low"
             return CognateResponse(
                 is_cognate=True,
-                common_ancestor=bridge_a[0],
-                ancestor_lang=_lang_display(bridge_a[1]),
+                common_ancestor=ancestor_term,
+                ancestor_lang=ancestor_lang,
                 graph=graph_data,
                 message=f"Cognates! '{bridge_a[0]}' ({_lang_display(bridge_a[1])}) \u2194 '{bridge_b[0]}' ({_lang_display(bridge_b[1])}) via {bridge_reltype.replace('_', ' ')}",
-                summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb share a common origin \u2014 connected through {_lang_display(bridge_a[1])} {bridge_a[0]}.",
-                confidence="medium",
-                ancestor_lang_code=bridge_a[1],
+                summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb share a common origin \u2014 connected through {ancestor_lang} {ancestor_term}.",
+                confidence=confidence,
+                ancestor_lang_code=ancestor_code,
             )
 
         # Fuzzy fallback: match proto-ancestors by normalized root
