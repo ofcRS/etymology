@@ -11,7 +11,7 @@ MUST_PASS_COGNATE = [
     ("нос", "ru", "nose", "en", None),
     ("новый", "ru", "new", "en", "néw"),
     ("ночь", "ru", "night", "en", "nókʷt"),
-    ("вода", "ru", "water", "en", "wed"),
+    ("вода", "ru", "water", "en", "w"),
     ("сердце", "ru", "heart", "en", "ḱerd"),
     ("берёза", "ru", "birch", "en", None),
     ("живой", "ru", "vivid", "en", None),

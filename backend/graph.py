@@ -418,6 +418,38 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
     common = set(ancestors_a.keys()) & set(ancestors_b.keys())
 
     if not common:
+        # Fuzzy proto-root matching: same root with variant reconstructions (e.g. *néwyos vs *néwos)
+        fuzzy = _fuzzy_match_proto_ancestors(ancestors_a, ancestors_b)
+        if fuzzy:
+            proto_a, proto_b = fuzzy
+            graph_data = _build_fuzzy_graph_data(
+                word_a, word_b, proto_a, proto_b, ancestors_a, ancestors_b
+            )
+            same_lang = proto_a[1] == proto_b[1]
+            path_len = len(ancestors_a[proto_a]) + len(ancestors_b[proto_b])
+            if same_lang and proto_a[1] in PROTO_LANGS and path_len <= 8:
+                fuzzy_confidence = "high"
+            elif same_lang:
+                fuzzy_confidence = "medium"
+            else:
+                fuzzy_confidence = "low"
+            era = ERA_APPROX.get(proto_a[1], "")
+            era_str = f", spoken {era}" if era else ""
+            if fuzzy_confidence == "high":
+                summary = f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb are related! Both descend from the {_lang_display(proto_a[1])} root {proto_a[0]}{era_str}."
+            else:
+                summary = f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb likely share the same root: {proto_a[0]} / {proto_b[0]} ({_lang_display(proto_a[1])})."
+            return CognateResponse(
+                is_cognate=True,
+                common_ancestor=proto_a[0],
+                ancestor_lang=_lang_display(proto_a[1]),
+                graph=graph_data,
+                message=f"Cognates! Common ancestor: '{proto_a[0]}' ({_lang_display(proto_a[1])})",
+                summary=summary,
+                confidence=fuzzy_confidence,
+                ancestor_lang_code=proto_a[1],
+            )
+
         # Weak bridge fallback: check cognate_of edges between ancestor sets
         bridge = _find_weak_bridge(ancestors_a, ancestors_b)
         if bridge:
@@ -453,25 +485,6 @@ def find_cognates(word_a: tuple[str, str], word_b: tuple[str, str]) -> CognateRe
                 summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb share a common origin \u2014 connected through {ancestor_lang} {ancestor_term}.",
                 confidence=confidence,
                 ancestor_lang_code=ancestor_code,
-            )
-
-        # Fuzzy fallback: match proto-ancestors by normalized root
-        fuzzy = _fuzzy_match_proto_ancestors(ancestors_a, ancestors_b)
-        if fuzzy:
-            proto_a, proto_b = fuzzy
-            graph_data = _build_fuzzy_graph_data(
-                word_a, word_b, proto_a, proto_b, ancestors_a, ancestors_b
-            )
-            fuzzy_confidence = "medium" if proto_a[1] == proto_b[1] else "low"
-            return CognateResponse(
-                is_cognate=True,
-                common_ancestor=proto_a[0],
-                ancestor_lang=_lang_display(proto_a[1]),
-                graph=graph_data,
-                message=f"Cognates! Common root: '{proto_a[0]}' / '{proto_b[0]}' ({_lang_display(proto_a[1])})",
-                summary=f"\u00ab{word_a[0]}\u00bb and \u00ab{word_b[0]}\u00bb likely share the same root: {proto_a[0]} / {proto_b[0]} ({_lang_display(proto_a[1])}).",
-                confidence=fuzzy_confidence,
-                ancestor_lang_code=proto_a[1],
             )
 
         graph_a = _build_single_tree(word_a, ancestors_a)

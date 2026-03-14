@@ -29,10 +29,10 @@ const EXAMPLE_PAIRS = [
   { a: "сердце", langA: "ru", b: "heart", langB: "en" },
   { a: "нос", langA: "ru", b: "nose", langB: "en" },
   { a: "кот", langA: "ru", b: "cat", langB: "en" },
-  { a: "звезда", langA: "ru", b: "star", langB: "en" },
+  { a: "два", langA: "ru", b: "two", langB: "en" },
   { a: "новый", langA: "ru", b: "new", langB: "en" },
   { a: "берёза", langA: "ru", b: "birch", langB: "en" },
-  { a: "огонь", langA: "ru", b: "fire", langB: "en" },
+  { a: "волк", langA: "ru", b: "wolf", langB: "en" },
 ];
 
 // Fun facts
