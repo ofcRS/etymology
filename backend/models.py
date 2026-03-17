@@ -46,3 +46,13 @@ class CognateResponse(BaseModel):
 class SearchResult(BaseModel):
     term: str
     lang: str
+
+
+class CognatePair(BaseModel):
+    word_a: str
+    lang_a: str
+    word_b: str
+    lang_b: str
+    ancestor: str | None = None
+    ancestor_lang: str | None = None
+    confidence: str | None = None

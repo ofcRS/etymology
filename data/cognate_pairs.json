@@ -1,0 +1,3584 @@
+[
+  {
+    "word_a": "камень",
+    "lang_a": "ru",
+    "word_b": "ace",
+    "lang_b": "en",
+    "ancestor": "*h₂eḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "аграрный",
+    "lang_a": "ru",
+    "word_b": "acre",
+    "lang_b": "en",
+    "ancestor": "*h₂éǵros",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "актёр",
+    "lang_a": "ru",
+    "word_b": "act",
+    "lang_b": "en",
+    "ancestor": "*h₂eǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дар",
+    "lang_a": "ru",
+    "word_b": "add",
+    "lang_b": "en",
+    "ancestor": "*deh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "беда",
+    "lang_a": "ru",
+    "word_b": "affy",
+    "lang_b": "en",
+    "ancestor": "*bʰeydʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ось",
+    "lang_a": "ru",
+    "word_b": "ala",
+    "lang_b": "en",
+    "ancestor": "*h₂eḱs-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "есмь",
+    "lang_a": "ru",
+    "word_b": "am",
+    "lang_b": "en",
+    "ancestor": "*h₁ésmi",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "махать",
+    "lang_a": "ru",
+    "word_b": "amaze",
+    "lang_b": "en",
+    "ancestor": "*(s)meh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "на",
+    "lang_a": "ru",
+    "word_b": "an",
+    "lang_b": "en",
+    "ancestor": "*h₂en-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "узкий",
+    "lang_a": "ru",
+    "word_b": "anger",
+    "lang_b": "en",
+    "ancestor": "*h₂enǵʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "урод",
+    "lang_a": "ru",
+    "word_b": "anhypostasia",
+    "lang_b": "en",
+    "ancestor": "*n̥-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рало",
+    "lang_a": "ru",
+    "word_b": "ard",
+    "lang_b": "en",
+    "ancestor": "*h₂erh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "автаркия",
+    "lang_a": "ru",
+    "word_b": "ark",
+    "lang_b": "en",
+    "ancestor": "*h₂erk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рамя",
+    "lang_a": "ru",
+    "word_b": "arm",
+    "lang_b": "en",
+    "ancestor": "*h₂er-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лони",
+    "lang_a": "ru",
+    "word_b": "as",
+    "lang_b": "en",
+    "ancestor": "*h₂el-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сколиоз",
+    "lang_a": "ru",
+    "word_b": "askile",
+    "lang_b": "en",
+    "ancestor": "*(s)kel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лось",
+    "lang_a": "ru",
+    "word_b": "auk",
+    "lang_b": "en",
+    "ancestor": "*h₁el-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вера",
+    "lang_a": "ru",
+    "word_b": "aver",
+    "lang_b": "en",
+    "ancestor": "*weh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ворот",
+    "lang_a": "ru",
+    "word_b": "avert",
+    "lang_b": "en",
+    "ancestor": "*wert-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вякать",
+    "lang_a": "ru",
+    "word_b": "avow",
+    "lang_b": "en",
+    "ancestor": "*wekʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пасти",
+    "lang_a": "ru",
+    "word_b": "ayr",
+    "lang_b": "en",
+    "ancestor": "*peh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "банк",
+    "lang_a": "ru",
+    "word_b": "back",
+    "lang_b": "en",
+    "ancestor": "*bʰeg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "балл",
+    "lang_a": "ru",
+    "word_b": "bald",
+    "lang_b": "en",
+    "ancestor": "*bʰel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "желна",
+    "lang_a": "ru",
+    "word_b": "ball",
+    "lang_b": "en",
+    "ancestor": "*gʷelH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бан",
+    "lang_a": "ru",
+    "word_b": "ban",
+    "lang_b": "en",
+    "ancestor": "*bʰeh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бант",
+    "lang_a": "ru",
+    "word_b": "band",
+    "lang_b": "en",
+    "ancestor": "*bʰendʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жрец",
+    "lang_a": "ru",
+    "word_b": "bard",
+    "lang_b": "en",
+    "ancestor": "*gʷerH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "берёза",
+    "lang_a": "ru",
+    "word_b": "bark",
+    "lang_b": "en",
+    "ancestor": "*bʰerHǵós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "багроветь",
+    "lang_a": "ru",
+    "word_b": "bask",
+    "lang_b": "en",
+    "ancestor": "*bʰeh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "быть",
+    "lang_a": "ru",
+    "word_b": "be",
+    "lang_b": "en",
+    "ancestor": "*bʰuH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "боб",
+    "lang_a": "ru",
+    "word_b": "bean",
+    "lang_b": "en",
+    "ancestor": "*bʰabʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "брать",
+    "lang_a": "ru",
+    "word_b": "bear",
+    "lang_b": "en",
+    "ancestor": "*bʰer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бобр",
+    "lang_a": "ru",
+    "word_b": "beaver",
+    "lang_b": "en",
+    "ancestor": "*bʰébʰrus",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бугор",
+    "lang_a": "ru",
+    "word_b": "bee",
+    "lang_b": "en",
+    "ancestor": "*bʰewgʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бить",
+    "lang_a": "ru",
+    "word_b": "bein",
+    "lang_b": "en",
+    "ancestor": "*bʰeyh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пиво",
+    "lang_a": "ru",
+    "word_b": "bib",
+    "lang_b": "en",
+    "ancestor": "*peh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Будда",
+    "lang_a": "ru",
+    "word_b": "bid",
+    "lang_b": "en",
+    "ancestor": "*bʰewdʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жажда",
+    "lang_a": "ru",
+    "word_b": "bid",
+    "lang_b": "en",
+    "ancestor": "*gʷʰedʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "блуд",
+    "lang_a": "ru",
+    "word_b": "bland",
+    "lang_b": "en",
+    "ancestor": "*bʰlendʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "блеять",
+    "lang_a": "ru",
+    "word_b": "blow",
+    "lang_b": "en",
+    "ancestor": "*bʰleh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "раб",
+    "lang_a": "ru",
+    "word_b": "bot",
+    "lang_b": "en",
+    "ancestor": "*h₃erbʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бразды",
+    "lang_a": "ru",
+    "word_b": "brad",
+    "lang_b": "en",
+    "ancestor": "*bʰrusdʰos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "брак",
+    "lang_a": "ru",
+    "word_b": "bray",
+    "lang_b": "en",
+    "ancestor": "*bʰreg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рыгать",
+    "lang_a": "ru",
+    "word_b": "bruit",
+    "lang_b": "en",
+    "ancestor": "*h₁rewg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "беречь",
+    "lang_a": "ru",
+    "word_b": "bury",
+    "lang_b": "en",
+    "ancestor": "*bʰergʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "капитулировать",
+    "lang_a": "ru",
+    "word_b": "cadel",
+    "lang_b": "en",
+    "ancestor": "*kauput-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "глава",
+    "lang_a": "ru",
+    "word_b": "callow",
+    "lang_b": "en",
+    "ancestor": "*gelH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гнома",
+    "lang_a": "ru",
+    "word_b": "can",
+    "lang_b": "en",
+    "ancestor": "*ǵneh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кора",
+    "lang_a": "ru",
+    "word_b": "card",
+    "lang_b": "en",
+    "ancestor": "*(s)ker-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "четыре",
+    "lang_a": "ru",
+    "word_b": "carrel",
+    "lang_b": "en",
+    "ancestor": "*kʷetwóres",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сулить",
+    "lang_a": "ru",
+    "word_b": "cave",
+    "lang_b": "en",
+    "ancestor": "*ḱewh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "поклоняться",
+    "lang_a": "ru",
+    "word_b": "cell",
+    "lang_b": "en",
+    "ancestor": "*ḱel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "крюк",
+    "lang_a": "ru",
+    "word_b": "char",
+    "lang_b": "en",
+    "ancestor": "*gers-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зиять",
+    "lang_a": "ru",
+    "word_b": "chasma",
+    "lang_b": "en",
+    "ancestor": "*ǵʰeh₁y-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жевать",
+    "lang_a": "ru",
+    "word_b": "chew",
+    "lang_b": "en",
+    "ancestor": "*ǵyewh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "седой",
+    "lang_a": "ru",
+    "word_b": "city",
+    "lang_b": "en",
+    "ancestor": "*ḱey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "глина",
+    "lang_a": "ru",
+    "word_b": "clad",
+    "lang_b": "en",
+    "ancestor": "*gleh₁y-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ключ",
+    "lang_a": "ru",
+    "word_b": "clef",
+    "lang_b": "en",
+    "ancestor": "*(s)kleh₂w-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "глубь",
+    "lang_a": "ru",
+    "word_b": "cleft",
+    "lang_b": "en",
+    "ancestor": "*glewbʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лектор",
+    "lang_a": "ru",
+    "word_b": "coil",
+    "lang_b": "en",
+    "ancestor": "*leǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зуб",
+    "lang_a": "ru",
+    "word_b": "comb",
+    "lang_b": "en",
+    "ancestor": "*ǵómbʰos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пот",
+    "lang_a": "ru",
+    "word_b": "cook",
+    "lang_b": "en",
+    "ancestor": "*pekʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сука",
+    "lang_a": "ru",
+    "word_b": "corgi",
+    "lang_b": "en",
+    "ancestor": "*ḱwṓ",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зерно",
+    "lang_a": "ru",
+    "word_b": "corn",
+    "lang_b": "en",
+    "ancestor": "*ǵr̥h₂nóm",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стан",
+    "lang_a": "ru",
+    "word_b": "cost",
+    "lang_b": "en",
+    "ancestor": "*steh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рагу",
+    "lang_a": "ru",
+    "word_b": "cost",
+    "lang_b": "en",
+    "ancestor": "*ǵéwstus",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "колоть",
+    "lang_a": "ru",
+    "word_b": "coup",
+    "lang_b": "en",
+    "ancestor": "*kelh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сестра",
+    "lang_a": "ru",
+    "word_b": "cousin",
+    "lang_b": "en",
+    "ancestor": "*swésōr",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "покой",
+    "lang_a": "ru",
+    "word_b": "coy",
+    "lang_b": "en",
+    "ancestor": "*kʷyeh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гламур",
+    "lang_a": "ru",
+    "word_b": "crab",
+    "lang_b": "en",
+    "ancestor": "*gerbʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "горло",
+    "lang_a": "ru",
+    "word_b": "craw",
+    "lang_b": "en",
+    "ancestor": "*gʷerh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "среда",
+    "lang_a": "ru",
+    "word_b": "credo",
+    "lang_b": "en",
+    "ancestor": "*ḱerd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "добрый",
+    "lang_a": "ru",
+    "word_b": "daft",
+    "lang_b": "en",
+    "ancestor": "*dʰh₂ebʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жечь",
+    "lang_a": "ru",
+    "word_b": "daw",
+    "lang_b": "en",
+    "ancestor": "*dʰegʷʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "шанс",
+    "lang_a": "ru",
+    "word_b": "decay",
+    "lang_b": "en",
+    "ancestor": "*ḱh₂d-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "долото",
+    "lang_a": "ru",
+    "word_b": "delve",
+    "lang_b": "en",
+    "ancestor": "*dʰelbʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "драть",
+    "lang_a": "ru",
+    "word_b": "derm",
+    "lang_b": "en",
+    "ancestor": "*der-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ажур",
+    "lang_a": "ru",
+    "word_b": "dev",
+    "lang_b": "en",
+    "ancestor": "*dyew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дума",
+    "lang_a": "ru",
+    "word_b": "dew",
+    "lang_b": "en",
+    "ancestor": "*dʰewh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дежа",
+    "lang_a": "ru",
+    "word_b": "dey",
+    "lang_b": "en",
+    "ancestor": "*dʰeyǵʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "давить",
+    "lang_a": "ru",
+    "word_b": "die",
+    "lang_b": "en",
+    "ancestor": "*dʰew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "афиша",
+    "lang_a": "ru",
+    "word_b": "dig",
+    "lang_b": "en",
+    "ancestor": "*dʰeygʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дно",
+    "lang_a": "ru",
+    "word_b": "dimple",
+    "lang_b": "en",
+    "ancestor": "*dʰewb-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "суд",
+    "lang_a": "ru",
+    "word_b": "do",
+    "lang_b": "en",
+    "ancestor": "*dʰeh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дева",
+    "lang_a": "ru",
+    "word_b": "doe",
+    "lang_b": "en",
+    "ancestor": "*dʰeh₁(y)-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "делить",
+    "lang_a": "ru",
+    "word_b": "dole",
+    "lang_b": "en",
+    "ancestor": "*dʰayl-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "доля",
+    "lang_a": "ru",
+    "word_b": "dolent",
+    "lang_b": "en",
+    "ancestor": "*delh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дама",
+    "lang_a": "ru",
+    "word_b": "dom",
+    "lang_b": "en",
+    "ancestor": "*dem-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "двор",
+    "lang_a": "ru",
+    "word_b": "door",
+    "lang_b": "en",
+    "ancestor": "*dʰwer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дверь",
+    "lang_a": "ru",
+    "word_b": "door",
+    "lang_b": "en",
+    "ancestor": "*dʰwer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Тихон",
+    "lang_a": "ru",
+    "word_b": "dow",
+    "lang_b": "en",
+    "ancestor": "*dʰewgʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дребезжать",
+    "lang_a": "ru",
+    "word_b": "drab",
+    "lang_b": "en",
+    "ancestor": "*dʰrebʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "друг",
+    "lang_a": "ru",
+    "word_b": "dree",
+    "lang_b": "en",
+    "ancestor": "*dʰrewgʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дух",
+    "lang_a": "ru",
+    "word_b": "dun",
+    "lang_b": "en",
+    "ancestor": "*dʰews-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дуга",
+    "lang_a": "ru",
+    "word_b": "dung",
+    "lang_b": "en",
+    "ancestor": "*dʰengʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "два",
+    "lang_a": "ru",
+    "word_b": "duo",
+    "lang_b": "en",
+    "ancestor": "*dwóh₁",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дож",
+    "lang_a": "ru",
+    "word_b": "dux",
+    "lang_b": "en",
+    "ancestor": "*dewk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Ока",
+    "lang_a": "ru",
+    "word_b": "ea",
+    "lang_b": "en",
+    "ancestor": "*h₂ekʷeh₂",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "явь",
+    "lang_a": "ru",
+    "word_b": "ear",
+    "lang_b": "en",
+    "ancestor": "*h₂ew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ухо",
+    "lang_a": "ru",
+    "word_b": "ear",
+    "lang_b": "en",
+    "ancestor": "*h₂ṓws",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "еда",
+    "lang_a": "ru",
+    "word_b": "eat",
+    "lang_b": "en",
+    "ancestor": "*h₁ed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "есть",
+    "lang_a": "ru",
+    "word_b": "eat",
+    "lang_b": "en",
+    "ancestor": "*h₁ed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "этот",
+    "lang_a": "ru",
+    "word_b": "eddy",
+    "lang_b": "en",
+    "ancestor": "*h₁é",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "идти",
+    "lang_a": "ru",
+    "word_b": "eid",
+    "lang_b": "en",
+    "ancestor": "*h₁ey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "восемь",
+    "lang_a": "ru",
+    "word_b": "eight",
+    "lang_b": "en",
+    "ancestor": "*oḱtṓw",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "эльф",
+    "lang_a": "ru",
+    "word_b": "elf",
+    "lang_b": "en",
+    "ancestor": "*h₂elbʰós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лебедь",
+    "lang_a": "ru",
+    "word_b": "elven",
+    "lang_b": "en",
+    "ancestor": "*albʰós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "обувь",
+    "lang_a": "ru",
+    "word_b": "endue",
+    "lang_b": "en",
+    "ancestor": "*h₃ew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "орёл",
+    "lang_a": "ru",
+    "word_b": "erne",
+    "lang_b": "en",
+    "ancestor": "*h₃érō",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "овца",
+    "lang_a": "ru",
+    "word_b": "ewe",
+    "lang_b": "en",
+    "ancestor": "*h₂ówis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тонкий",
+    "lang_a": "ru",
+    "word_b": "extenuate",
+    "lang_b": "en",
+    "ancestor": "*tenh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "овал",
+    "lang_a": "ru",
+    "word_b": "ey",
+    "lang_b": "en",
+    "ancestor": "*h₂ōwyóm",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "око",
+    "lang_a": "ru",
+    "word_b": "eye",
+    "lang_b": "en",
+    "ancestor": "*h₃ekʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "паз",
+    "lang_a": "ru",
+    "word_b": "fack",
+    "lang_b": "en",
+    "ancestor": "*peh₂ǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "веер",
+    "lang_a": "ru",
+    "word_b": "fan",
+    "lang_b": "en",
+    "ancestor": "*h₂weh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "порося",
+    "lang_a": "ru",
+    "word_b": "fard",
+    "lang_b": "en",
+    "ancestor": "*perḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "при",
+    "lang_a": "ru",
+    "word_b": "fare",
+    "lang_b": "en",
+    "ancestor": "*per-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пердеть",
+    "lang_a": "ru",
+    "word_b": "fart",
+    "lang_b": "en",
+    "ancestor": "*perd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пеньюар",
+    "lang_a": "ru",
+    "word_b": "fax",
+    "lang_b": "en",
+    "ancestor": "*peḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бздеть",
+    "lang_a": "ru",
+    "word_b": "feist",
+    "lang_b": "en",
+    "ancestor": "*pesd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "полотно",
+    "lang_a": "ru",
+    "word_b": "fell",
+    "lang_b": "en",
+    "ancestor": "*pel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пеший",
+    "lang_a": "ru",
+    "word_b": "fet",
+    "lang_b": "en",
+    "ancestor": "*ped-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "писать",
+    "lang_a": "ru",
+    "word_b": "fey",
+    "lang_b": "en",
+    "ancestor": "*peyḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "плод",
+    "lang_a": "ru",
+    "word_b": "fill",
+    "lang_b": "en",
+    "ancestor": "*pleh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "полный",
+    "lang_a": "ru",
+    "word_b": "fill",
+    "lang_b": "en",
+    "ancestor": "*pl̥h₁nós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "поле",
+    "lang_a": "ru",
+    "word_b": "flag",
+    "lang_b": "en",
+    "ancestor": "*pleh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "плакать",
+    "lang_a": "ru",
+    "word_b": "flail",
+    "lang_b": "en",
+    "ancestor": "*pleh₂k-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пласт",
+    "lang_a": "ru",
+    "word_b": "flan",
+    "lang_b": "en",
+    "ancestor": "*pleth₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "блоха",
+    "lang_a": "ru",
+    "word_b": "flea",
+    "lang_b": "en",
+    "ancestor": "*plúsis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "плот",
+    "lang_a": "ru",
+    "word_b": "fleam",
+    "lang_b": "en",
+    "ancestor": "*plew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пена",
+    "lang_a": "ru",
+    "word_b": "foam",
+    "lang_b": "en",
+    "ancestor": "*(s)poH(y)-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пеший",
+    "lang_a": "ru",
+    "word_b": "foot",
+    "lang_b": "en",
+    "ancestor": "*pṓds",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "абрикос",
+    "lang_a": "ru",
+    "word_b": "for",
+    "lang_b": "en",
+    "ancestor": "*preh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Дон",
+    "lang_a": "ru",
+    "word_b": "fount",
+    "lang_b": "en",
+    "ancestor": "*dʰenh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "брить",
+    "lang_a": "ru",
+    "word_b": "fray",
+    "lang_b": "en",
+    "ancestor": "*bʰreyH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "приятель",
+    "lang_a": "ru",
+    "word_b": "fray",
+    "lang_b": "en",
+    "ancestor": "*preyH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "прыгать",
+    "lang_a": "ru",
+    "word_b": "frog",
+    "lang_b": "en",
+    "ancestor": "*prew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сбор",
+    "lang_a": "ru",
+    "word_b": "fry",
+    "lang_b": "en",
+    "ancestor": "*bʰer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тимьян",
+    "lang_a": "ru",
+    "word_b": "fume",
+    "lang_b": "en",
+    "ancestor": "*dʰewh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "желвь",
+    "lang_a": "ru",
+    "word_b": "gale",
+    "lang_b": "en",
+    "ancestor": "*gʰel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "желчь",
+    "lang_a": "ru",
+    "word_b": "gall",
+    "lang_b": "en",
+    "ancestor": "*ǵʰelh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гамбит",
+    "lang_a": "ru",
+    "word_b": "gam",
+    "lang_b": "en",
+    "ancestor": "*kh₂em-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "клок",
+    "lang_a": "ru",
+    "word_b": "gel",
+    "lang_b": "en",
+    "ancestor": "*gel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жуть",
+    "lang_a": "ru",
+    "word_b": "get",
+    "lang_b": "en",
+    "ancestor": "*gʰed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "город",
+    "lang_a": "ru",
+    "word_b": "gird",
+    "lang_b": "en",
+    "ancestor": "*gʰerdʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жёлудь",
+    "lang_a": "ru",
+    "word_b": "gland",
+    "lang_b": "en",
+    "ancestor": "*gʷelh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зима",
+    "lang_a": "ru",
+    "word_b": "goad",
+    "lang_b": "en",
+    "ancestor": "*ǵʰey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "фондю",
+    "lang_a": "ru",
+    "word_b": "god",
+    "lang_b": "en",
+    "ancestor": "*ǵʰew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "год",
+    "lang_a": "ru",
+    "word_b": "good",
+    "lang_b": "en",
+    "ancestor": "*gʰedʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жар",
+    "lang_a": "ru",
+    "word_b": "gore",
+    "lang_b": "en",
+    "ancestor": "*gʷʰer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "грести",
+    "lang_a": "ru",
+    "word_b": "grab",
+    "lang_b": "en",
+    "ancestor": "*gʰrebʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гон",
+    "lang_a": "ru",
+    "word_b": "gun",
+    "lang_b": "en",
+    "ancestor": "*gʷʰen-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "фондю",
+    "lang_a": "ru",
+    "word_b": "gut",
+    "lang_b": "en",
+    "ancestor": "*ǵʰewd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "коготь",
+    "lang_a": "ru",
+    "word_b": "hack",
+    "lang_b": "en",
+    "ancestor": "*keg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "чесать",
+    "lang_a": "ru",
+    "word_b": "hair",
+    "lang_b": "en",
+    "ancestor": "*kes-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "холм",
+    "lang_a": "ru",
+    "word_b": "hale",
+    "lang_b": "en",
+    "ancestor": "*kelH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "член",
+    "lang_a": "ru",
+    "word_b": "halt",
+    "lang_b": "en",
+    "ancestor": "*kel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "узкий",
+    "lang_a": "ru",
+    "word_b": "hangnail",
+    "lang_b": "en",
+    "ancestor": "*h₂énǵʰus",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зурна",
+    "lang_a": "ru",
+    "word_b": "hart",
+    "lang_b": "en",
+    "ancestor": "*ḱerh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "солома",
+    "lang_a": "ru",
+    "word_b": "haulm",
+    "lang_b": "en",
+    "ancestor": "*ḱolh₂mos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сей",
+    "lang_a": "ru",
+    "word_b": "he",
+    "lang_b": "en",
+    "ancestor": "*ḱís",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "канюк",
+    "lang_a": "ru",
+    "word_b": "hen",
+    "lang_b": "en",
+    "ancestor": "*keh₂n-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кий",
+    "lang_a": "ru",
+    "word_b": "hew",
+    "lang_b": "en",
+    "ancestor": "*kewh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гиена",
+    "lang_a": "ru",
+    "word_b": "hog",
+    "lang_b": "en",
+    "ancestor": "*suH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "копыто",
+    "lang_a": "ru",
+    "word_b": "hoof",
+    "lang_b": "en",
+    "ancestor": "*ḱoph₂ós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "курс",
+    "lang_a": "ru",
+    "word_b": "hoss",
+    "lang_b": "en",
+    "ancestor": "*ḱers-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гость",
+    "lang_a": "ru",
+    "word_b": "host",
+    "lang_b": "en",
+    "ancestor": "*gʰóstis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "господь",
+    "lang_a": "ru",
+    "word_b": "host",
+    "lang_b": "en",
+    "ancestor": "*gʰóstipotis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "святой",
+    "lang_a": "ru",
+    "word_b": "housel",
+    "lang_b": "en",
+    "ancestor": "*ḱwen-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "где",
+    "lang_a": "ru",
+    "word_b": "how",
+    "lang_b": "en",
+    "ancestor": "*kʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "айс",
+    "lang_a": "ru",
+    "word_b": "ice",
+    "lang_b": "en",
+    "ancestor": "*h₁eyH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "огонь",
+    "lang_a": "ru",
+    "word_b": "ignite",
+    "lang_b": "en",
+    "ancestor": "*h₁n̥gʷnis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "иной",
+    "lang_a": "ru",
+    "word_b": "inch",
+    "lang_b": "en",
+    "ancestor": "*óynos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "уста",
+    "lang_a": "ru",
+    "word_b": "inexorable",
+    "lang_b": "en",
+    "ancestor": "*h₃éh₁os",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "уголь",
+    "lang_a": "ru",
+    "word_b": "ingle",
+    "lang_b": "en",
+    "ancestor": "*h₁óngʷl̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нырнуть",
+    "lang_a": "ru",
+    "word_b": "intuit",
+    "lang_b": "en",
+    "ancestor": "*h₁én",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вить",
+    "lang_a": "ru",
+    "word_b": "iris",
+    "lang_b": "en",
+    "ancestor": "*weh₁y-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "литургия",
+    "lang_a": "ru",
+    "word_b": "irk",
+    "lang_b": "en",
+    "ancestor": "*werǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жетон",
+    "lang_a": "ru",
+    "word_b": "jet",
+    "lang_b": "en",
+    "ancestor": "*(H)yeh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "иго",
+    "lang_a": "ru",
+    "word_b": "join",
+    "lang_b": "en",
+    "ancestor": "*yewg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "юный",
+    "lang_a": "ru",
+    "word_b": "juvenile",
+    "lang_b": "en",
+    "ancestor": "*h₂yuh₁en-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "чары",
+    "lang_a": "ru",
+    "word_b": "karma",
+    "lang_b": "en",
+    "ancestor": "*kʷer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зять",
+    "lang_a": "ru",
+    "word_b": "kin",
+    "lang_b": "en",
+    "ancestor": "*ǵenh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "говор",
+    "lang_a": "ru",
+    "word_b": "kite",
+    "lang_b": "en",
+    "ancestor": "*gewH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гнести",
+    "lang_a": "ru",
+    "word_b": "knead",
+    "lang_b": "en",
+    "ancestor": "*gnet-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "клад",
+    "lang_a": "ru",
+    "word_b": "lade",
+    "lang_b": "en",
+    "ancestor": "*kleh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лядвея",
+    "lang_a": "ru",
+    "word_b": "land",
+    "lang_b": "en",
+    "ancestor": "*lendʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лопать",
+    "lang_a": "ru",
+    "word_b": "lap",
+    "lang_b": "en",
+    "ancestor": "*leb-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лепить",
+    "lang_a": "ru",
+    "word_b": "lave",
+    "lang_b": "en",
+    "ancestor": "*leyp-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лог",
+    "lang_a": "ru",
+    "word_b": "law",
+    "lang_b": "en",
+    "ancestor": "*legʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "луч",
+    "lang_a": "ru",
+    "word_b": "lea",
+    "lang_b": "en",
+    "ancestor": "*lewk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "люди",
+    "lang_a": "ru",
+    "word_b": "lede",
+    "lang_b": "en",
+    "ancestor": "*h₁lewdʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "слух",
+    "lang_a": "ru",
+    "word_b": "leer",
+    "lang_b": "en",
+    "ancestor": "*ḱlew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лихой",
+    "lang_a": "ru",
+    "word_b": "lend",
+    "lang_b": "en",
+    "ancestor": "*leykʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "деверь",
+    "lang_a": "ru",
+    "word_b": "levirate",
+    "lang_b": "en",
+    "ancestor": "*dayh₂wḗr",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "любой",
+    "lang_a": "ru",
+    "word_b": "lib",
+    "lang_b": "en",
+    "ancestor": "*lewbʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лизать",
+    "lang_a": "ru",
+    "word_b": "lick",
+    "lang_b": "en",
+    "ancestor": "*leyǵʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лгать",
+    "lang_a": "ru",
+    "word_b": "lie",
+    "lang_b": "en",
+    "ancestor": "*lewgʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стлать",
+    "lang_a": "ru",
+    "word_b": "lieu",
+    "lang_b": "en",
+    "ancestor": "*stel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лупить",
+    "lang_a": "ru",
+    "word_b": "lift",
+    "lang_b": "en",
+    "ancestor": "*lewp-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "слюни",
+    "lang_a": "ru",
+    "word_b": "lime",
+    "lang_b": "en",
+    "ancestor": "*h₂leyH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "линия",
+    "lang_a": "ru",
+    "word_b": "line",
+    "lang_b": "en",
+    "ancestor": "*līno-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лаять",
+    "lang_a": "ru",
+    "word_b": "loll",
+    "lang_b": "en",
+    "ancestor": "*leh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "скулить",
+    "lang_a": "ru",
+    "word_b": "low",
+    "lang_b": "en",
+    "ancestor": "*kelh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "след",
+    "lang_a": "ru",
+    "word_b": "luge",
+    "lang_b": "en",
+    "ancestor": "*sleydʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "лёгкий",
+    "lang_a": "ru",
+    "word_b": "lung",
+    "lang_b": "en",
+    "ancestor": "*h₁lengʷʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мена",
+    "lang_a": "ru",
+    "word_b": "mad",
+    "lang_b": "en",
+    "ancestor": "*mey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мусор",
+    "lang_a": "ru",
+    "word_b": "mail",
+    "lang_b": "en",
+    "ancestor": "*meh₂d-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мало",
+    "lang_a": "ru",
+    "word_b": "mali",
+    "lang_b": "en",
+    "ancestor": "*(s)mel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "молот",
+    "lang_a": "ru",
+    "word_b": "malm",
+    "lang_b": "en",
+    "ancestor": "*melh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "муж",
+    "lang_a": "ru",
+    "word_b": "man",
+    "lang_b": "en",
+    "ancestor": "*mon-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мор",
+    "lang_a": "ru",
+    "word_b": "mara",
+    "lang_b": "en",
+    "ancestor": "*mer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "метать",
+    "lang_a": "ru",
+    "word_b": "mattock",
+    "lang_b": "en",
+    "ancestor": "*met-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мошна",
+    "lang_a": "ru",
+    "word_b": "maw",
+    "lang_b": "en",
+    "ancestor": "*mak-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "маг",
+    "lang_a": "ru",
+    "word_b": "may",
+    "lang_b": "en",
+    "ancestor": "*megʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мёд",
+    "lang_a": "ru",
+    "word_b": "mead",
+    "lang_b": "en",
+    "ancestor": "*médʰu",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мера",
+    "lang_a": "ru",
+    "word_b": "meal",
+    "lang_b": "en",
+    "ancestor": "*meh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "молить",
+    "lang_a": "ru",
+    "word_b": "meld",
+    "lang_b": "en",
+    "ancestor": "*meldʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мясо",
+    "lang_a": "ru",
+    "word_b": "member",
+    "lang_b": "en",
+    "ancestor": "*mḗms",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "море",
+    "lang_a": "ru",
+    "word_b": "mere",
+    "lang_b": "en",
+    "ancestor": "*móri",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "межа",
+    "lang_a": "ru",
+    "word_b": "mid",
+    "lang_b": "en",
+    "ancestor": "*médʰyos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мочь",
+    "lang_a": "ru",
+    "word_b": "might",
+    "lang_b": "en",
+    "ancestor": "*megʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "молозиво",
+    "lang_a": "ru",
+    "word_b": "milk",
+    "lang_b": "en",
+    "ancestor": "*h₂melǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мнить",
+    "lang_a": "ru",
+    "word_b": "min",
+    "lang_b": "en",
+    "ancestor": "*men-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "муравей",
+    "lang_a": "ru",
+    "word_b": "mire",
+    "lang_b": "en",
+    "ancestor": "*morwi-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "месить",
+    "lang_a": "ru",
+    "word_b": "mix",
+    "lang_b": "en",
+    "ancestor": "*meyḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "маять",
+    "lang_a": "ru",
+    "word_b": "mo",
+    "lang_b": "en",
+    "ancestor": "*meh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мчать",
+    "lang_a": "ru",
+    "word_b": "mold",
+    "lang_b": "en",
+    "ancestor": "*mewk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "моль",
+    "lang_a": "ru",
+    "word_b": "mole",
+    "lang_b": "en",
+    "ancestor": "*mel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "месяц",
+    "lang_a": "ru",
+    "word_b": "moon",
+    "lang_b": "en",
+    "ancestor": "*mḗh₁n̥s",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мох",
+    "lang_a": "ru",
+    "word_b": "moss",
+    "lang_b": "en",
+    "ancestor": "*mews-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мать",
+    "lang_a": "ru",
+    "word_b": "mother",
+    "lang_b": "en",
+    "ancestor": "*méh₂tēr",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мышь",
+    "lang_a": "ru",
+    "word_b": "mouse",
+    "lang_b": "en",
+    "ancestor": "*múHs",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мышца",
+    "lang_a": "ru",
+    "word_b": "musk",
+    "lang_b": "en",
+    "ancestor": "*muh₂s",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нагой",
+    "lang_a": "ru",
+    "word_b": "naga",
+    "lang_b": "en",
+    "ancestor": "*nogʷós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нога",
+    "lang_a": "ru",
+    "word_b": "nail",
+    "lang_b": "en",
+    "ancestor": "*h₃negʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ноготь",
+    "lang_a": "ru",
+    "word_b": "nail",
+    "lang_b": "en",
+    "ancestor": "*h₃nogʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "имя",
+    "lang_a": "ru",
+    "word_b": "name",
+    "lang_b": "en",
+    "ancestor": "*h₁nómn̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "не",
+    "lang_a": "ru",
+    "word_b": "ne",
+    "lang_b": "en",
+    "ancestor": "*né",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нёбо",
+    "lang_a": "ru",
+    "word_b": "nebulous",
+    "lang_b": "en",
+    "ancestor": "*nébʰos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ныть",
+    "lang_a": "ru",
+    "word_b": "need",
+    "lang_b": "en",
+    "ancestor": "*neh₂w-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Нева",
+    "lang_a": "ru",
+    "word_b": "neon",
+    "lang_b": "en",
+    "ancestor": "*néwos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ниша",
+    "lang_a": "ru",
+    "word_b": "nest",
+    "lang_b": "en",
+    "ancestor": "*nisdós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кон",
+    "lang_a": "ru",
+    "word_b": "nief",
+    "lang_b": "en",
+    "ancestor": "*ken-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ночь",
+    "lang_a": "ru",
+    "word_b": "night",
+    "lang_b": "en",
+    "ancestor": "*nókʷts",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "девять",
+    "lang_a": "ru",
+    "word_b": "nine",
+    "lang_b": "en",
+    "ancestor": "*h₁néwn̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нить",
+    "lang_a": "ru",
+    "word_b": "nous",
+    "lang_b": "en",
+    "ancestor": "*(s)neh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нектар",
+    "lang_a": "ru",
+    "word_b": "noxa",
+    "lang_b": "en",
+    "ancestor": "*neḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "нос",
+    "lang_a": "ru",
+    "word_b": "nuzzle",
+    "lang_b": "en",
+    "ancestor": "*néh₂s",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ход",
+    "lang_a": "ru",
+    "word_b": "nye",
+    "lang_b": "en",
+    "ancestor": "*sed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "эфир",
+    "lang_a": "ru",
+    "word_b": "oast",
+    "lang_b": "en",
+    "ancestor": "*h₂eydʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "аптека",
+    "lang_a": "ru",
+    "word_b": "of",
+    "lang_b": "en",
+    "ancestor": "*h₂epó",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сок",
+    "lang_a": "ru",
+    "word_b": "opium",
+    "lang_b": "en",
+    "ancestor": "*sokʷós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "робкий",
+    "lang_a": "ru",
+    "word_b": "orphan",
+    "lang_b": "en",
+    "ancestor": "*h₃órbʰos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "второй",
+    "lang_a": "ru",
+    "word_b": "other",
+    "lang_b": "en",
+    "ancestor": "*h₂énteros",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "путь",
+    "lang_a": "ru",
+    "word_b": "pad",
+    "lang_b": "en",
+    "ancestor": "*pent-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "чин",
+    "lang_a": "ru",
+    "word_b": "pain",
+    "lang_b": "en",
+    "ancestor": "*kʷey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "цена",
+    "lang_a": "ru",
+    "word_b": "pain",
+    "lang_b": "en",
+    "ancestor": "*kʷey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "полотно",
+    "lang_a": "ru",
+    "word_b": "paltry",
+    "lang_b": "en",
+    "ancestor": "*polto-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "птах",
+    "lang_a": "ru",
+    "word_b": "pas",
+    "lang_b": "en",
+    "ancestor": "*peth₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "путь",
+    "lang_a": "ru",
+    "word_b": "path",
+    "lang_b": "en",
+    "ancestor": "*pent-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пенал",
+    "lang_a": "ru",
+    "word_b": "pen",
+    "lang_b": "en",
+    "ancestor": "*peth₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пядь",
+    "lang_a": "ru",
+    "word_b": "pend",
+    "lang_b": "en",
+    "ancestor": "*(s)pend-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бегать",
+    "lang_a": "ru",
+    "word_b": "phobia",
+    "lang_b": "en",
+    "ancestor": "*bʰegʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пика",
+    "lang_a": "ru",
+    "word_b": "pie",
+    "lang_b": "en",
+    "ancestor": "*(s)peyk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пшеница",
+    "lang_a": "ru",
+    "word_b": "pile",
+    "lang_b": "en",
+    "ancestor": "*peys-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "пюре",
+    "lang_a": "ru",
+    "word_b": "pity",
+    "lang_b": "en",
+    "ancestor": "*pewH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "амплуа",
+    "lang_a": "ru",
+    "word_b": "ply",
+    "lang_b": "en",
+    "ancestor": "*pleḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ять",
+    "lang_a": "ru",
+    "word_b": "pome",
+    "lang_b": "en",
+    "ancestor": "*h₁em-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "просить",
+    "lang_a": "ru",
+    "word_b": "pray",
+    "lang_b": "en",
+    "ancestor": "*preḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "про",
+    "lang_a": "ru",
+    "word_b": "prior",
+    "lang_b": "en",
+    "ancestor": "*pró",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тварь",
+    "lang_a": "ru",
+    "word_b": "quark",
+    "lang_b": "en",
+    "ancestor": "*twerH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жена",
+    "lang_a": "ru",
+    "word_b": "quean",
+    "lang_b": "en",
+    "ancestor": "*gʷḗn",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жёрнов",
+    "lang_a": "ru",
+    "word_b": "quern",
+    "lang_b": "en",
+    "ancestor": "*gʷréh₂wō",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "род",
+    "lang_a": "ru",
+    "word_b": "race",
+    "lang_b": "en",
+    "ancestor": "*wréh₂ds",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "адрес",
+    "lang_a": "ru",
+    "word_b": "raj",
+    "lang_b": "en",
+    "ancestor": "*h₃reǵ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ёрзать",
+    "lang_a": "ru",
+    "word_b": "rake",
+    "lang_b": "en",
+    "ancestor": "*h₁erǵʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ведь",
+    "lang_a": "ru",
+    "word_b": "rat",
+    "lang_b": "en",
+    "ancestor": "-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кровь",
+    "lang_a": "ru",
+    "word_b": "raw",
+    "lang_b": "en",
+    "ancestor": "*krewh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рада",
+    "lang_a": "ru",
+    "word_b": "read",
+    "lang_b": "en",
+    "ancestor": "*Hreh₁dʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рай",
+    "lang_a": "ru",
+    "word_b": "real",
+    "lang_b": "en",
+    "ancestor": "*reh₁ís",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ржа",
+    "lang_a": "ru",
+    "word_b": "red",
+    "lang_b": "en",
+    "ancestor": "*h₁rewdʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "струя",
+    "lang_a": "ru",
+    "word_b": "rheum",
+    "lang_b": "en",
+    "ancestor": "*srew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ребро",
+    "lang_a": "ru",
+    "word_b": "rib",
+    "lang_b": "en",
+    "ancestor": "*h₁rebʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кризис",
+    "lang_a": "ru",
+    "word_b": "rime",
+    "lang_b": "en",
+    "ancestor": "*krey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "расти",
+    "lang_a": "ru",
+    "word_b": "rin",
+    "lang_b": "en",
+    "ancestor": "*h₃er-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "круг",
+    "lang_a": "ru",
+    "word_b": "ring",
+    "lang_b": "en",
+    "ancestor": "*(s)krengʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рыть",
+    "lang_a": "ru",
+    "word_b": "room",
+    "lang_b": "en",
+    "ancestor": "*(H)rewH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "герцог",
+    "lang_a": "ru",
+    "word_b": "roop",
+    "lang_b": "en",
+    "ancestor": "*ker-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рыдать",
+    "lang_a": "ru",
+    "word_b": "rout",
+    "lang_b": "en",
+    "ancestor": "*HrewdH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кроха",
+    "lang_a": "ru",
+    "word_b": "rue",
+    "lang_b": "en",
+    "ancestor": "*krows-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рой",
+    "lang_a": "ru",
+    "word_b": "run",
+    "lang_b": "en",
+    "ancestor": "*h₃reyH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "розга",
+    "lang_a": "ru",
+    "word_b": "rush",
+    "lang_b": "en",
+    "ancestor": "*(H)resg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "село",
+    "lang_a": "ru",
+    "word_b": "sale",
+    "lang_b": "en",
+    "ancestor": "*sel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "слать",
+    "lang_a": "ru",
+    "word_b": "sale",
+    "lang_b": "en",
+    "ancestor": "*selh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "соус",
+    "lang_a": "ru",
+    "word_b": "salt",
+    "lang_b": "en",
+    "ancestor": "*séh₂ls",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сечь",
+    "lang_a": "ru",
+    "word_b": "saw",
+    "lang_b": "en",
+    "ancestor": "*sek-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сюита",
+    "lang_a": "ru",
+    "word_b": "saw",
+    "lang_b": "en",
+    "ancestor": "*sekʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "щебень",
+    "lang_a": "ru",
+    "word_b": "scab",
+    "lang_b": "en",
+    "ancestor": "*skabʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сканер",
+    "lang_a": "ru",
+    "word_b": "scan",
+    "lang_b": "en",
+    "ancestor": "*skend-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "окоп",
+    "lang_a": "ru",
+    "word_b": "scoop",
+    "lang_b": "en",
+    "ancestor": "*(s)kep-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ссака",
+    "lang_a": "ru",
+    "word_b": "sea",
+    "lang_b": "en",
+    "ancestor": "*seykʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сухой",
+    "lang_a": "ru",
+    "word_b": "sere",
+    "lang_b": "en",
+    "ancestor": "*h₂sews-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "семь",
+    "lang_a": "ru",
+    "word_b": "seven",
+    "lang_b": "en",
+    "ancestor": "*septḿ̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "шея",
+    "lang_a": "ru",
+    "word_b": "sew",
+    "lang_b": "en",
+    "ancestor": "*syewh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "коробить",
+    "lang_a": "ru",
+    "word_b": "sharp",
+    "lang_b": "en",
+    "ancestor": "*(s)kerb-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "цедить",
+    "lang_a": "ru",
+    "word_b": "shit",
+    "lang_b": "en",
+    "ancestor": "*skeyd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "чуять",
+    "lang_a": "ru",
+    "word_b": "show",
+    "lang_b": "en",
+    "ancestor": "*(s)kewh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зеркало",
+    "lang_a": "ru",
+    "word_b": "simulacrum",
+    "lang_b": "en",
+    "ancestor": "*-tlom",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ещё",
+    "lang_a": "ru",
+    "word_b": "sin",
+    "lang_b": "en",
+    "ancestor": "*h₁es-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "шесть",
+    "lang_a": "ru",
+    "word_b": "six",
+    "lang_b": "en",
+    "ancestor": "*swéḱs",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "щит",
+    "lang_a": "ru",
+    "word_b": "ski",
+    "lang_b": "en",
+    "ancestor": "*skey-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сёрбать",
+    "lang_a": "ru",
+    "word_b": "slurp",
+    "lang_b": "en",
+    "ancestor": "*srebʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "мало",
+    "lang_a": "ru",
+    "word_b": "small",
+    "lang_b": "en",
+    "ancestor": "*(s)mal-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "смола",
+    "lang_a": "ru",
+    "word_b": "smell",
+    "lang_b": "en",
+    "ancestor": "*smel-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "снег",
+    "lang_a": "ru",
+    "word_b": "snew",
+    "lang_b": "en",
+    "ancestor": "*sneygʷʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "снег",
+    "lang_a": "ru",
+    "word_b": "snow",
+    "lang_b": "en",
+    "ancestor": "*snóygʷʰos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "солнце",
+    "lang_a": "ru",
+    "word_b": "sol",
+    "lang_b": "en",
+    "ancestor": "*sóh₂wl̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "слать",
+    "lang_a": "ru",
+    "word_b": "solace",
+    "lang_b": "en",
+    "ancestor": "*selh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сын",
+    "lang_a": "ru",
+    "word_b": "son",
+    "lang_b": "en",
+    "ancestor": "*suHnús",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сырой",
+    "lang_a": "ru",
+    "word_b": "son",
+    "lang_b": "en",
+    "ancestor": "*sewH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сыр",
+    "lang_a": "ru",
+    "word_b": "sour",
+    "lang_b": "en",
+    "ancestor": "*súHros",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "семя",
+    "lang_a": "ru",
+    "word_b": "sow",
+    "lang_b": "en",
+    "ancestor": "*seh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "бахча",
+    "lang_a": "ru",
+    "word_b": "speak",
+    "lang_b": "en",
+    "ancestor": "*bʰeh₂g-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "спеть",
+    "lang_a": "ru",
+    "word_b": "speed",
+    "lang_b": "en",
+    "ancestor": "*speh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "шпион",
+    "lang_a": "ru",
+    "word_b": "spy",
+    "lang_b": "en",
+    "ancestor": "*speḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стена",
+    "lang_a": "ru",
+    "word_b": "stain",
+    "lang_b": "en",
+    "ancestor": "*steyh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сторож",
+    "lang_a": "ru",
+    "word_b": "starch",
+    "lang_b": "en",
+    "ancestor": "*sterg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "терпеть",
+    "lang_a": "ru",
+    "word_b": "start",
+    "lang_b": "en",
+    "ancestor": "*(s)ter-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "штакет",
+    "lang_a": "ru",
+    "word_b": "stay",
+    "lang_b": "en",
+    "ancestor": "*(s)teg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стекло",
+    "lang_a": "ru",
+    "word_b": "stick",
+    "lang_b": "en",
+    "ancestor": "*(s)teyg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "топот",
+    "lang_a": "ru",
+    "word_b": "stop",
+    "lang_b": "en",
+    "ancestor": "*(s)tewp-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стужа",
+    "lang_a": "ru",
+    "word_b": "stot",
+    "lang_b": "en",
+    "ancestor": "*(s)tewd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стричь",
+    "lang_a": "ru",
+    "word_b": "strain",
+    "lang_b": "en",
+    "ancestor": "*streyg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стройка",
+    "lang_a": "ru",
+    "word_b": "straw",
+    "lang_b": "en",
+    "ancestor": "*strew-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "простор",
+    "lang_a": "ru",
+    "word_b": "stray",
+    "lang_b": "en",
+    "ancestor": "*sterh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "страшный",
+    "lang_a": "ru",
+    "word_b": "stretch",
+    "lang_b": "en",
+    "ancestor": "*(s)treg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "стега",
+    "lang_a": "ru",
+    "word_b": "sty",
+    "lang_b": "en",
+    "ancestor": "*steygʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "свёкор",
+    "lang_a": "ru",
+    "word_b": "swager",
+    "lang_b": "en",
+    "ancestor": "*swéḱuros",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ссора",
+    "lang_a": "ru",
+    "word_b": "swarm",
+    "lang_b": "en",
+    "ancestor": "*swer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "сон",
+    "lang_a": "ru",
+    "word_b": "sweb",
+    "lang_b": "en",
+    "ancestor": "*swep-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тьма",
+    "lang_a": "ru",
+    "word_b": "tamas",
+    "lang_b": "en",
+    "ancestor": "*temH-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "топить",
+    "lang_a": "ru",
+    "word_b": "tapas",
+    "lang_b": "en",
+    "ancestor": "*tep-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "торопить",
+    "lang_a": "ru",
+    "word_b": "tart",
+    "lang_b": "en",
+    "ancestor": "*terkʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тур",
+    "lang_a": "ru",
+    "word_b": "taur",
+    "lang_b": "en",
+    "ancestor": "*táwros",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тесло",
+    "lang_a": "ru",
+    "word_b": "tela",
+    "lang_b": "en",
+    "ancestor": "*tetḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тугой",
+    "lang_a": "ru",
+    "word_b": "tent",
+    "lang_b": "en",
+    "ancestor": "*ten-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тормоз",
+    "lang_a": "ru",
+    "word_b": "tharm",
+    "lang_b": "en",
+    "ancestor": "*tórmos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "таять",
+    "lang_a": "ru",
+    "word_b": "thaw",
+    "lang_b": "en",
+    "ancestor": "*teh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тот",
+    "lang_a": "ru",
+    "word_b": "the",
+    "lang_b": "en",
+    "ancestor": "*só",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "туча",
+    "lang_a": "ru",
+    "word_b": "thee",
+    "lang_b": "en",
+    "ancestor": "*tenk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ток",
+    "lang_a": "ru",
+    "word_b": "theow",
+    "lang_b": "en",
+    "ancestor": "*tekʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тесный",
+    "lang_a": "ru",
+    "word_b": "thin",
+    "lang_b": "en",
+    "ancestor": "*ténh₂us",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тысяча",
+    "lang_a": "ru",
+    "word_b": "thousand",
+    "lang_b": "en",
+    "ancestor": "*tuHsont-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "торопить",
+    "lang_a": "ru",
+    "word_b": "thrave",
+    "lang_b": "en",
+    "ancestor": "*terp-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "труд",
+    "lang_a": "ru",
+    "word_b": "threat",
+    "lang_b": "en",
+    "ancestor": "*trewd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ты",
+    "lang_a": "ru",
+    "word_b": "thy",
+    "lang_b": "en",
+    "ancestor": "*túh₂",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "том",
+    "lang_a": "ru",
+    "word_b": "tome",
+    "lang_b": "en",
+    "ancestor": "*temh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "друид",
+    "lang_a": "ru",
+    "word_b": "tree",
+    "lang_b": "en",
+    "ancestor": "*dóru",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "три",
+    "lang_a": "ru",
+    "word_b": "tri",
+    "lang_b": "en",
+    "ancestor": "*tréyes",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "дрофа",
+    "lang_a": "ru",
+    "word_b": "trot",
+    "lang_b": "en",
+    "ancestor": "*dreh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "язык",
+    "lang_a": "ru",
+    "word_b": "tung",
+    "lang_b": "en",
+    "ancestor": "*dn̥ǵʰwéh₂s",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "тру",
+    "lang_a": "ru",
+    "word_b": "turn",
+    "lang_b": "en",
+    "ancestor": "*terh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "десна",
+    "lang_a": "ru",
+    "word_b": "tusk",
+    "lang_b": "en",
+    "ancestor": "*h₃dónts",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вымя",
+    "lang_a": "ru",
+    "word_b": "udder",
+    "lang_b": "en",
+    "ancestor": "*h₁ówHdʰr̥",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вода",
+    "lang_a": "ru",
+    "word_b": "und",
+    "lang_b": "en",
+    "ancestor": "*wed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "велюр",
+    "lang_a": "ru",
+    "word_b": "urna",
+    "lang_b": "en",
+    "ancestor": "*h₂welh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кипеть",
+    "lang_a": "ru",
+    "word_b": "vaporous",
+    "lang_b": "en",
+    "ancestor": "*kwep-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "врать",
+    "lang_a": "ru",
+    "word_b": "verb",
+    "lang_b": "en",
+    "ancestor": "*werh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "воз",
+    "lang_a": "ru",
+    "word_b": "via",
+    "lang_b": "en",
+    "ancestor": "*weǵʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "воин",
+    "lang_a": "ru",
+    "word_b": "vim",
+    "lang_b": "en",
+    "ancestor": "*weyh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "жир",
+    "lang_a": "ru",
+    "word_b": "viva",
+    "lang_b": "en",
+    "ancestor": "*gʷeyh₃-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "воля",
+    "lang_a": "ru",
+    "word_b": "wale",
+    "lang_b": "en",
+    "ancestor": "*welh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ус",
+    "lang_a": "ru",
+    "word_b": "wand",
+    "lang_b": "en",
+    "ancestor": "*wendʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "верх",
+    "lang_a": "ru",
+    "word_b": "war",
+    "lang_b": "en",
+    "ancestor": "*wers-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "гараж",
+    "lang_a": "ru",
+    "word_b": "ward",
+    "lang_b": "en",
+    "ancestor": "*wer-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вода",
+    "lang_a": "ru",
+    "word_b": "water",
+    "lang_b": "en",
+    "ancestor": "*wed-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "оса",
+    "lang_a": "ru",
+    "word_b": "web",
+    "lang_b": "en",
+    "ancestor": "*webʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вести",
+    "lang_a": "ru",
+    "word_b": "wed",
+    "lang_b": "en",
+    "ancestor": "*wedʰ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Волга",
+    "lang_a": "ru",
+    "word_b": "welkin",
+    "lang_b": "en",
+    "ancestor": "*welg-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ветхий",
+    "lang_a": "ru",
+    "word_b": "wether",
+    "lang_b": "en",
+    "ancestor": "*wet-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "кой",
+    "lang_a": "ru",
+    "word_b": "who",
+    "lang_b": "en",
+    "ancestor": "*kʷ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "весь",
+    "lang_a": "ru",
+    "word_b": "wick",
+    "lang_b": "en",
+    "ancestor": "*weyḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вдова",
+    "lang_a": "ru",
+    "word_b": "widow",
+    "lang_b": "en",
+    "ancestor": "*h₁widʰéwh₂",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ад",
+    "lang_a": "ru",
+    "word_b": "wit",
+    "lang_b": "en",
+    "ancestor": "*weyd-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ветвь",
+    "lang_a": "ru",
+    "word_b": "withe",
+    "lang_b": "en",
+    "ancestor": "*wéh₁itis",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "волк",
+    "lang_a": "ru",
+    "word_b": "wolf",
+    "lang_b": "en",
+    "ancestor": "*wĺ̥kʷos",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "волна",
+    "lang_a": "ru",
+    "word_b": "wool",
+    "lang_b": "en",
+    "ancestor": "*h₂welh₁-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "рука",
+    "lang_a": "ru",
+    "word_b": "wroo",
+    "lang_b": "en",
+    "ancestor": "*wrenk-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "решить",
+    "lang_a": "ru",
+    "word_b": "wry",
+    "lang_b": "en",
+    "ancestor": "*wreyḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "вы",
+    "lang_a": "ru",
+    "word_b": "ye",
+    "lang_b": "en",
+    "ancestor": "*yúHs",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "агнец",
+    "lang_a": "ru",
+    "word_b": "yean",
+    "lang_b": "en",
+    "ancestor": "*h₂egʷnós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ива",
+    "lang_a": "ru",
+    "word_b": "yew",
+    "lang_b": "en",
+    "ancestor": "*h₁eyHw-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "иго",
+    "lang_a": "ru",
+    "word_b": "yogi",
+    "lang_b": "en",
+    "ancestor": "*yugóm",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "июнь",
+    "lang_a": "ru",
+    "word_b": "young",
+    "lang_b": "en",
+    "ancestor": "*h₂yuHn̥ḱós",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "ехать",
+    "lang_a": "ru",
+    "word_b": "zeal",
+    "lang_b": "en",
+    "ancestor": "*yeh₂-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "зебра",
+    "lang_a": "ru",
+    "word_b": "zebra",
+    "lang_b": "en",
+    "ancestor": "*h₁eḱ-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  },
+  {
+    "word_a": "Один",
+    "lang_a": "ru",
+    "word_b": "Óðr",
+    "lang_b": "en",
+    "ancestor": "*weh₂t-",
+    "ancestor_lang": "Proto-Indo-European",
+    "confidence": "high"
+  }
+]

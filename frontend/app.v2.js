@@ -19,21 +19,8 @@ let lastAncestorTerm = null;
 let lastAncestorLangCode = null;
 let isTreeView = false;
 
-// Example pairs
-const EXAMPLE_PAIRS = [
-  { a: "мать", langA: "ru", b: "mother", langB: "en" },
-  { a: "вода", langA: "ru", b: "water", langB: "en" },
-  { a: "молоко", langA: "ru", b: "milk", langB: "en" },
-  { a: "ночь", langA: "ru", b: "night", langB: "en" },
-  { a: "три", langA: "ru", b: "three", langB: "en" },
-  { a: "сердце", langA: "ru", b: "heart", langB: "en" },
-  { a: "нос", langA: "ru", b: "nose", langB: "en" },
-  { a: "кот", langA: "ru", b: "cat", langB: "en" },
-  { a: "два", langA: "ru", b: "two", langB: "en" },
-  { a: "новый", langA: "ru", b: "new", langB: "en" },
-  { a: "берёза", langA: "ru", b: "birch", langB: "en" },
-  { a: "волк", langA: "ru", b: "wolf", langB: "en" },
-];
+// Cached pairs from API (populated on load)
+let cachedPairs = [];
 
 // Fun facts
 const FUN_FACTS = [
@@ -47,18 +34,26 @@ const FUN_FACTS = [
   "\"Daughter\" in English, \"\u0434\u043E\u0447\u044C\" in Russian, \"\u03B8\u03C5\u03B3\u03AC\u03C4\u03B7\u03C1\" in Ancient Greek, and \"duhit\u00E1r\" in Sanskrit all share the PIE root *d\u02B0ug\u02B0\u2082t\u1E17r.",
 ];
 
-// Render example chips
-function renderExampleChips() {
+// Render example chips from API
+async function renderExampleChips() {
   const container = document.getElementById("example-chips");
-  const display = EXAMPLE_PAIRS.slice(0, 6);
-  display.forEach((pair) => {
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "example-chip";
-    chip.textContent = `${pair.a} \u2194 ${pair.b}`;
-    chip.addEventListener("click", () => submitPair(pair));
-    container.appendChild(chip);
-  });
+  try {
+    const res = await fetch(`${API}api/pairs?limit=6`);
+    const pairs = await res.json();
+    cachedPairs = pairs;
+    pairs.forEach((pair) => {
+      const p = { a: pair.word_a, langA: pair.lang_a, b: pair.word_b, langB: pair.lang_b };
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "example-chip";
+      chip.title = pair.ancestor ? `Common ancestor: ${pair.ancestor}` : "";
+      chip.textContent = `${p.a} \u2194 ${p.b}`;
+      chip.addEventListener("click", () => submitPair(p));
+      container.appendChild(chip);
+    });
+  } catch (err) {
+    console.error("Failed to load example pairs:", err);
+  }
 }
 
 function submitPair(pair) {
@@ -70,9 +65,18 @@ function submitPair(pair) {
 }
 
 // Random button
-document.getElementById("random-btn").addEventListener("click", () => {
-  const pair = EXAMPLE_PAIRS[Math.floor(Math.random() * EXAMPLE_PAIRS.length)];
-  submitPair(pair);
+document.getElementById("random-btn").addEventListener("click", async () => {
+  try {
+    const res = await fetch(`${API}api/random-pair`);
+    const pair = await res.json();
+    submitPair({ a: pair.word_a, langA: pair.lang_a, b: pair.word_b, langB: pair.lang_b });
+  } catch (err) {
+    // Fallback to cached pairs
+    if (cachedPairs.length > 0) {
+      const p = cachedPairs[Math.floor(Math.random() * cachedPairs.length)];
+      submitPair({ a: p.word_a, langA: p.lang_a, b: p.word_b, langB: p.lang_b });
+    }
+  }
 });
 
 renderExampleChips();
@@ -175,14 +179,18 @@ function hideLegend() {
 
 // Get a suggestion pair that shares a language with the current search
 function getSuggestion(currentLangA, currentLangB) {
-  const matches = EXAMPLE_PAIRS.filter(
+  const pairs = cachedPairs.map((p) => ({
+    a: p.word_a, langA: p.lang_a, b: p.word_b, langB: p.lang_b,
+  }));
+  if (pairs.length === 0) return { a: "мать", langA: "ru", b: "mother", langB: "en" };
+  const matches = pairs.filter(
     (p) =>
       p.langA === currentLangA ||
       p.langA === currentLangB ||
       p.langB === currentLangA ||
       p.langB === currentLangB
   );
-  if (matches.length === 0) return EXAMPLE_PAIRS[0];
+  if (matches.length === 0) return pairs[0];
   return matches[Math.floor(Math.random() * matches.length)];
 }
 

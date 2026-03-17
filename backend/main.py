@@ -2,8 +2,9 @@ from fastapi import FastAPI, Query
 from fastapi.staticfiles import StaticFiles
 
 from backend.graph import find_cognates, get_descendant_tree
-from backend.models import CognateRequest, CognateResponse, GraphData, SearchResult
+from backend.models import CognateRequest, CognateResponse, CognatePair, GraphData, SearchResult
 from backend.database import search_words
+from backend.pairs import get_random_pair, get_random_pairs
 
 app = FastAPI(title="Etymology Cognate Detector")
 
@@ -18,6 +19,16 @@ async def check_cognates(req: CognateRequest):
 @app.get("/api/tree", response_model=GraphData)
 async def tree(term: str, lang: str):
     return get_descendant_tree((term, lang))
+
+
+@app.get("/api/random-pair", response_model=CognatePair | None)
+async def random_pair():
+    return get_random_pair()
+
+
+@app.get("/api/pairs", response_model=list[CognatePair])
+async def pairs(limit: int = Query(default=6, ge=1, le=50)):
+    return get_random_pairs(limit)
 
 
 @app.get("/api/search", response_model=list[SearchResult])
