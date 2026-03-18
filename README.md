@@ -20,12 +20,14 @@ Enter two words → see if they share a common ancestor → explore the etymolog
 
 ## Features
 
-- **Cognate detection** — finds common proto-language ancestors between word pairs
+- **Cognate detection** — finds common proto-language ancestors between word pairs using three-tier BFS: direct ancestor lookup → fuzzy proto-root matching → weak bridge fallback
+- **Descendant tree view** — explore full descendant trees from any ancestor node
+- **Random cognate pairs** — 398 pre-validated pairs for discovery, served via API
 - **Ancestor translations** — shows modern-language reflexes (descendants) on ancestor nodes in the graph
 - **Auto language detection** — automatically detects English/Russian based on input script
 - **Non-cognate graphs** — displays separate etymology trees even when words aren't related
 - **Autocomplete** — prefix search across 1.8M etymology entries
-- **Interactive graph** — zoom, pan, drag nodes in the D3.js visualization
+- **Interactive graph** — zoom, pan, drag nodes; era-colored nodes with tooltips and legend
 
 ## Example cognate pairs
 
@@ -66,20 +68,28 @@ backend/
   graph.py       BFS cognate detection against SQLite
   database.py    SQLite queries & reflex lookups
   models.py      Pydantic models
+  pairs.py       Pre-computed cognate pairs loader
 frontend/
   index.html     Single-page UI
-  app.js         Form handling, language detection, API calls
+  app.v2.js      Form handling, language detection, API calls
   graph.js       D3.js force-directed graph visualization
   style.css      Dark theme styling
+data/
+  etymology.db         SQLite database (~255MB)
+  cognate_pairs.json   398 pre-validated cognate pairs
 scripts/
-  setup_db.py    Parquet → SQLite pipeline
+  setup_db.py          Parquet → SQLite pipeline
+  generate_pairs.py    Mine & validate cognate pairs from DB
 ```
 
 ## API
 
 ```
-POST /api/cognates  — { word_a: {term, lang}, word_b: {term, lang} }
-GET  /api/search    — ?q=prefix&lang=English
+POST /api/cognates    — { word_a: {term, lang}, word_b: {term, lang} }
+GET  /api/search      — ?q=prefix&lang=English
+GET  /api/tree        — ?term=*méh₂tēr&lang=ine-pro
+GET  /api/random-pair — returns one random cognate pair
+GET  /api/pairs       — ?limit=6 — returns N random pairs
 ```
 
 Languages use full names: `English`, `Russian`, `Proto-Indo-European`, `Old English`, `Latin`, etc.
