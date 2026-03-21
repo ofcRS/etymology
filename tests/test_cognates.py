@@ -162,6 +162,22 @@ def test_descendant_tree_max_nodes():
     assert len(tree.nodes) <= 50
 
 
+def test_descendant_tree_single_parent():
+    """Each node should have exactly one incoming link (tree invariant)."""
+    tree = get_descendant_tree(("*méh₂tēr", "ine-pro"))
+    targets = [link.target for link in tree.links]
+    assert len(targets) == len(set(targets)), "Some nodes have multiple parent links"
+
+
+def test_descendant_tree_no_flat_has_root():
+    """has_root links should not bypass proper derivation chains."""
+    tree = get_descendant_tree(("*méh₂tēr", "ine-pro"))
+    proper_targets = {l.target for l in tree.links if l.reltype != "has_root"}
+    has_root_targets = {l.target for l in tree.links if l.reltype == "has_root"}
+    overlap = proper_targets & has_root_targets
+    assert not overlap, f"Nodes reachable via derivation also have has_root link: {overlap}"
+
+
 def test_cognate_response_has_lang_code():
     """Cognate responses include ancestor_lang_code for tree expansion."""
     result = find_cognates(("water", "en"), ("вода", "ru"))

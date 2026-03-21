@@ -640,16 +640,35 @@ def _add_path_to_graph(
 def get_descendant_tree(
     root: tuple[str, str], max_nodes: int = 300, max_depth: int = 6,
 ) -> GraphData:
-    """Reverse BFS from ancestor node to find all descendants."""
+    """Reverse BFS from ancestor node to find all descendants.
+
+    Uses a two-pass approach:
+      Pass 1 – BFS with derivation reltypes only (no has_root) to build a
+               proper hierarchy.
+      Pass 2 – Fallback sweep for has_root edges from the root, adding only
+               nodes not already discovered.
+    Each node gets exactly one parent link (tree invariant).
+    """
     conn = get_connection()
 
     nodes_set: dict[tuple[str, str], str] = {root: "ancestor"}
-    links: list[GraphLink] = []
+    parent_link: dict[tuple[str, str], GraphLink] = {}
     queue = deque([(root, 0)])
     visited = {root}
 
-    placeholders = ",".join("?" * len(STRONG_RELTYPES))
-    params = tuple(STRONG_RELTYPES)
+    # Pass 1: BFS without has_root — builds proper derivation hierarchy
+    tree_reltypes = STRONG_RELTYPES - {"has_root"}
+    placeholders = ",".join("?" * len(tree_reltypes))
+    params = tuple(tree_reltypes)
+
+    def _proto_variants(term: str, lang: str) -> list[str]:
+        variants = [term]
+        if lang in PROTO_LANGS:
+            if term.startswith("*"):
+                variants.append(term.lstrip("*"))
+            else:
+                variants.append("*" + term)
+        return variants
 
     while queue and len(nodes_set) < max_nodes:
         current, depth = queue.popleft()
@@ -657,14 +676,7 @@ def get_descendant_tree(
             continue
 
         term, lang = current
-
-        # Build variants for proto-lang asterisk handling
-        variants = [term]
-        if lang in PROTO_LANGS:
-            if term.startswith("*"):
-                variants.append(term.lstrip("*"))
-            else:
-                variants.append("*" + term)
+        variants = _proto_variants(term, lang)
 
         all_rows = []
         for t in variants:
@@ -675,7 +687,6 @@ def get_descendant_tree(
             ).fetchall()
             all_rows.extend(rows)
 
-        # Deduplicate
         seen = set()
         for row in all_rows:
             child = (row["term"], row["lang"])
@@ -684,22 +695,40 @@ def get_descendant_tree(
                 continue
             seen.add(key)
 
-            # Link from parent to child (descent direction)
-            source_id = f"{current[0]}|{current[1]}"
-            target_id = f"{row['term']}|{row['lang']}"
-            link = GraphLink(source=source_id, target=target_id, reltype=row["reltype"])
-            if not any(l.source == link.source and l.target == link.target for l in links):
-                links.append(link)
-
             if child not in visited:
                 visited.add(child)
                 if len(nodes_set) >= max_nodes:
                     break
                 nodes_set[child] = "intermediate"
+                source_id = f"{current[0]}|{current[1]}"
+                target_id = f"{row['term']}|{row['lang']}"
+                parent_link[child] = GraphLink(
+                    source=source_id, target=target_id, reltype=row["reltype"],
+                )
                 queue.append((child, depth + 1))
+
+    # Pass 2: has_root fallback — pick up nodes only reachable via has_root
+    root_variants = _proto_variants(root[0], root[1])
+    for rt in root_variants:
+        fallback_rows = conn.execute(
+            "SELECT term, lang FROM etymologies "
+            "WHERE related_term = ? AND related_lang = ? AND reltype = 'has_root'",
+            (rt, root[1]),
+        ).fetchall()
+        for row in fallback_rows:
+            child = (row["term"], row["lang"])
+            if child not in visited and len(nodes_set) < max_nodes:
+                visited.add(child)
+                nodes_set[child] = "intermediate"
+                source_id = f"{root[0]}|{root[1]}"
+                target_id = f"{row['term']}|{row['lang']}"
+                parent_link[child] = GraphLink(
+                    source=source_id, target=target_id, reltype="has_root",
+                )
 
     conn.close()
 
+    links = list(parent_link.values())
     nodes = [
         GraphNode(id=f"{t}|{l}", term=t, lang=l, type=ntype)
         for (t, l), ntype in nodes_set.items()
