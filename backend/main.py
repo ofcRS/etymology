@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Response
 from fastapi.staticfiles import StaticFiles
 
 from backend.graph import find_cognates, get_descendant_tree
@@ -22,12 +22,14 @@ async def tree(term: str, lang: str):
 
 
 @app.get("/api/random-pair", response_model=CognatePair | None)
-async def random_pair():
+async def random_pair(response: Response):
+    response.headers["Cache-Control"] = "no-store"
     return get_random_pair()
 
 
 @app.get("/api/pairs", response_model=list[CognatePair])
-async def pairs(limit: int = Query(default=6, ge=1, le=50)):
+async def pairs(response: Response, limit: int = Query(default=6, ge=1, le=50)):
+    response.headers["Cache-Control"] = "no-store"
     return get_random_pairs(limit)
 
 
