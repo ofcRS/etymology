@@ -14,9 +14,9 @@ Enter two words → see if they share a common ancestor → explore the etymolog
 
 ## How it works
 
-1. **Data** — 1.8M etymology relationships parsed from [Wiktionary](https://en.wiktionary.org/) via [etymology-db](https://github.com/droher/etymology-db), stored in SQLite (~250MB)
+1. **Data** — 1.6M etymology relationships parsed from [Wiktionary](https://en.wiktionary.org/) via [wiktextract/kaikki.org](https://kaikki.org/), stored in SQLite (~250MB)
 2. **Algorithm** — BFS from both words through ancestry edges (`inherited_from`, `derived_from`, `borrowed_from`), intersects ancestor sets, prefers Proto-Indo-European roots
-3. **Visualization** — D3.js force-directed graph showing the etymological chain: input words (blue) → intermediates (gray) → common ancestor (gold)
+3. **Visualization** — D3.js force-directed graph showing the etymological chain with era-colored nodes (proto-languages gold, ancient amber, medieval brown, modern green) and a diamond-shaped common ancestor
 
 ## Features
 
@@ -24,9 +24,9 @@ Enter two words → see if they share a common ancestor → explore the etymolog
 - **Descendant tree view** — explore full descendant trees from any ancestor node
 - **Random cognate pairs** — 398 pre-validated pairs for discovery, served via API
 - **Ancestor translations** — shows modern-language reflexes (descendants) on ancestor nodes in the graph
-- **Auto language detection** — automatically detects English/Russian based on input script
+- **Auto language detection** — detects Russian, Armenian, Greek, and Arabic from input script; defaults to English
 - **Non-cognate graphs** — displays separate etymology trees even when words aren't related
-- **Autocomplete** — prefix search across 1.8M etymology entries
+- **Autocomplete** — prefix search across 1.6M etymology entries
 - **Interactive graph** — zoom, pan, drag nodes; era-colored nodes with tooltips and legend
 
 ## Example cognate pairs
@@ -42,7 +42,7 @@ Enter two words → see if they share a common ancestor → explore the etymolog
 
 - **Backend**: Python, FastAPI, SQLite
 - **Frontend**: Vanilla JS, D3.js
-- **Data**: [etymology-db](https://github.com/droher/etymology-db) (Wiktionary parquet dump)
+- **Data**: [wiktextract/kaikki.org](https://kaikki.org/) (Wiktionary JSONL dump)
 - **Deployment**: GitHub Actions → SSH to Hetzner VPS
 
 ## Setup
@@ -51,7 +51,7 @@ Enter two words → see if they share a common ancestor → explore the etymolog
 # Install dependencies
 uv sync
 
-# Download & build the etymology database (~140MB download → ~250MB SQLite)
+# Download & build the etymology database (~2.3GB download → ~250MB SQLite)
 uv run python scripts/setup_db.py
 
 # Run
@@ -78,7 +78,7 @@ data/
   etymology.db         SQLite database (~255MB)
   cognate_pairs.json   398 pre-validated cognate pairs
 scripts/
-  setup_db.py          Parquet → SQLite pipeline
+  setup_db.py          JSONL → SQLite pipeline
   generate_pairs.py    Mine & validate cognate pairs from DB
 ```
 
@@ -86,13 +86,13 @@ scripts/
 
 ```
 POST /api/cognates    — { word_a: {term, lang}, word_b: {term, lang} }
-GET  /api/search      — ?q=prefix&lang=English
+GET  /api/search      — ?q=prefix&lang=en
 GET  /api/tree        — ?term=*méh₂tēr&lang=ine-pro
 GET  /api/random-pair — returns one random cognate pair
 GET  /api/pairs       — ?limit=6 — returns N random pairs
 ```
 
-Languages use full names: `English`, `Russian`, `Proto-Indo-European`, `Old English`, `Latin`, etc.
+Languages use Wiktionary codes: `en`, `ru`, `de`, `fr`, `la`, `grc`, `ine-pro`, `gem-pro`, etc.
 
 ## License
 
