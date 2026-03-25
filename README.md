@@ -1,6 +1,7 @@
 # Etymology — Cognate Detector
 
-<img width="2388" height="1512" alt="image" src="https://github.com/user-attachments/assets/34e8efa5-1915-49cb-a415-de99f3542be2" />
+<img width="1972" height="1410" alt="image" src="https://github.com/user-attachments/assets/fc3b78de-164f-4803-8cff-33c7f26a9ed3" />
+
 
 **Live at [shck.dev/etymology](https://shck.dev/etymology/)**
 
