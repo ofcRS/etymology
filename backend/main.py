@@ -39,5 +39,26 @@ async def search(q: str = Query(min_length=1), lang: str = Query(default="en")):
     return [SearchResult(term=r["term"], lang=r["lang"]) for r in results]
 
 
+@app.get("/robots.txt", include_in_schema=False)
+async def robots_txt():
+    content = "User-agent: *\nAllow: /\n\nSitemap: https://shck.dev/etymology/sitemap.xml\n"
+    return Response(content=content, media_type="text/plain")
+
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def sitemap_xml():
+    content = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        "  <url>\n"
+        "    <loc>https://shck.dev/etymology/</loc>\n"
+        "    <changefreq>monthly</changefreq>\n"
+        "    <priority>1.0</priority>\n"
+        "  </url>\n"
+        "</urlset>\n"
+    )
+    return Response(content=content, media_type="application/xml")
+
+
 # Serve frontend as static files (mount last so API routes take priority)
 app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")

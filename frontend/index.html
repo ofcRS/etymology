@@ -4,10 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Этимология — Cognate Detector</title>
+    <meta name="description" content="Discover shared Indo-European roots between words across 16 languages. Enter two words and trace their etymology back to Proto-Indo-European ancestors with interactive graphs.">
+    <meta name="theme-color" content="#0d0a06">
+    <link rel="canonical" href="https://shck.dev/etymology/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://shck.dev/etymology/">
+    <meta property="og:title" content="Этимология — Cognate Detector">
+    <meta property="og:description" content="Trace shared Indo-European roots between words across 16 languages. Interactive etymology graphs powered by 1.6M Wiktionary relationships.">
+    <meta property="og:image" content="https://shck.dev/etymology/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Etymology graph showing Proto-Indo-European root connecting English and Russian words">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:site_name" content="Этимология">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Этимология — Cognate Detector">
+    <meta name="twitter:description" content="Trace shared Indo-European roots between words across 16 languages. Interactive etymology graphs.">
+    <meta name="twitter:image" content="https://shck.dev/etymology/og-image.png">
+    <meta name="twitter:image:alt" content="Etymology graph showing Proto-Indo-European root connecting English and Russian words">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Old+Standard+TT:wght@400;700&family=Uncial+Antiqua&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "url": "https://shck.dev/etymology/",
+          "name": "Этимология — Cognate Detector",
+          "description": "Discover shared Indo-European roots between words across 16 languages.",
+          "inLanguage": "en"
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Этимология — Cognate Detector",
+          "url": "https://shck.dev/etymology/",
+          "description": "Enter two words from different languages and trace their shared etymology back to Proto-Indo-European ancestors. Visualizes cognate relationships as interactive graphs using 1.6M Wiktionary etymology relationships.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "Any",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <!-- SVG filter definitions for graph node glow effects -->
@@ -38,16 +95,20 @@
             <div class="ornament ornament-bottom" aria-hidden="true">◆ ◈ ◆</div>
         </header>
 
-        <div class="examples-section">
-            <div class="example-chips" id="example-chips"></div>
-            <button type="button" id="random-btn" class="random-btn">Random pair</button>
-        </div>
+        <main>
+            <section aria-label="Example word pairs">
+                <div class="examples-section">
+                    <div class="example-chips" id="example-chips"></div>
+                    <button type="button" id="random-btn" class="random-btn">Random pair</button>
+                </div>
 
-        <div class="fun-fact" id="fun-fact"></div>
+                <div class="fun-fact" id="fun-fact"></div>
+            </section>
 
-        <div class="scroll-panel">
-            <form id="cognate-form">
-                <div class="input-row">
+            <section aria-label="Cognate search">
+                <div class="scroll-panel">
+                    <form id="cognate-form" role="search">
+                        <div class="input-row">
                     <div class="input-group">
                         <label for="word-a">Word A</label>
                         <div class="input-with-lang">
@@ -102,81 +163,89 @@
 
                     <button type="submit" id="check-btn">Check</button>
                 </div>
-            </form>
-        </div>
+                    </form>
+                </div>
+            </section>
 
-        <div id="result" class="result hidden"></div>
+            <section aria-label="Results">
+                <div id="result" class="result hidden"></div>
 
-        <div id="graph-container">
-            <svg id="graph"></svg>
-        </div>
+                <div id="graph-container">
+                    <svg id="graph" role="img" aria-label="Etymology relationship graph"></svg>
+                </div>
 
-        <div id="graph-legend" class="graph-legend hidden">
-            <h3 class="legend-title">Legend</h3>
-            <div class="legend-grid">
-                <div class="legend-section">
-                    <h4>Connections</h4>
-                    <div class="legend-item">
-                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2"/></svg>
-                        <span>Natural evolution (inherited, derived)</span>
-                    </div>
-                    <div class="legend-item">
-                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="8,4"/></svg>
-                        <span>Borrowing (loanword)</span>
-                    </div>
-                    <div class="legend-item">
-                        <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="3,3"/></svg>
-                        <span>Cognate link (same root)</span>
+                <div id="graph-legend" class="graph-legend hidden">
+                    <h3 class="legend-title">Legend</h3>
+                    <div class="legend-grid">
+                        <div class="legend-section">
+                            <h4>Connections</h4>
+                            <div class="legend-item">
+                                <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2"/></svg>
+                                <span>Natural evolution (inherited, derived)</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="8,4"/></svg>
+                                <span>Borrowing (loanword)</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg width="40" height="12"><line x1="0" y1="6" x2="40" y2="6" stroke="#5a4428" stroke-width="2" stroke-dasharray="3,3"/></svg>
+                                <span>Cognate link (same root)</span>
+                            </div>
+                        </div>
+                        <div class="legend-section">
+                            <h4>Eras</h4>
+                            <div class="legend-item">
+                                <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#c8a830"/></svg>
+                                <span>Proto-languages (before 1500 BCE)</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#a07840"/></svg>
+                                <span>Ancient languages (2000 BCE - 500 CE)</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#7a6850"/></svg>
+                                <span>Medieval languages (500 - 1500 CE)</span>
+                            </div>
+                            <div class="legend-item">
+                                <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#5a8a6a"/></svg>
+                                <span>Modern languages (present day)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="legend-section">
-                    <h4>Eras</h4>
-                    <div class="legend-item">
-                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#c8a830"/></svg>
-                        <span>Proto-languages (before 1500 BCE)</span>
-                    </div>
-                    <div class="legend-item">
-                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#a07840"/></svg>
-                        <span>Ancient languages (2000 BCE - 500 CE)</span>
-                    </div>
-                    <div class="legend-item">
-                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#7a6850"/></svg>
-                        <span>Medieval languages (500 - 1500 CE)</span>
-                    </div>
-                    <div class="legend-item">
-                        <svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#5a8a6a"/></svg>
-                        <span>Modern languages (present day)</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <details class="how-to-read hidden" id="how-to-read">
-            <summary>How to read this graph</summary>
-            <div class="how-to-read-content">
-                <p><strong>PIE</strong> stands for <em>Proto-Indo-European</em> — the reconstructed common ancestor of most European and many Asian languages, spoken roughly 4500-2500 BCE.</p>
-                <p>The <strong>*</strong> before a word (like *wodr) means it is <em>reconstructed</em> — no written records exist, but linguists infer its form from descendant languages.</p>
-                <p><strong>Arrows</strong> show the direction of descent: an arrow from A to B means "B evolved from A" or "B was borrowed from A."</p>
-                <div class="timeline-bar">
-                    <div class="timeline-era" style="background: #c8a830;">
-                        <span class="timeline-label">PIE</span>
-                        <span class="timeline-date">~4500 BCE</span>
+                <details class="how-to-read hidden" id="how-to-read">
+                    <summary>How to read this graph</summary>
+                    <div class="how-to-read-content">
+                        <p><strong>PIE</strong> stands for <em>Proto-Indo-European</em> — the reconstructed common ancestor of most European and many Asian languages, spoken roughly 4500-2500 BCE.</p>
+                        <p>The <strong>*</strong> before a word (like *wodr) means it is <em>reconstructed</em> — no written records exist, but linguists infer its form from descendant languages.</p>
+                        <p><strong>Arrows</strong> show the direction of descent: an arrow from A to B means "B evolved from A" or "B was borrowed from A."</p>
+                        <div class="timeline-bar">
+                            <div class="timeline-era" style="background: #c8a830;">
+                                <span class="timeline-label">PIE</span>
+                                <span class="timeline-date">~4500 BCE</span>
+                            </div>
+                            <div class="timeline-era" style="background: #a07840;">
+                                <span class="timeline-label">Latin / Greek</span>
+                                <span class="timeline-date">~500 BCE</span>
+                            </div>
+                            <div class="timeline-era" style="background: #7a6850;">
+                                <span class="timeline-label">Old English / Old French</span>
+                                <span class="timeline-date">~800 CE</span>
+                            </div>
+                            <div class="timeline-era" style="background: #5a8a6a;">
+                                <span class="timeline-label">Modern languages</span>
+                                <span class="timeline-date">today</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="timeline-era" style="background: #a07840;">
-                        <span class="timeline-label">Latin / Greek</span>
-                        <span class="timeline-date">~500 BCE</span>
-                    </div>
-                    <div class="timeline-era" style="background: #7a6850;">
-                        <span class="timeline-label">Old English / Old French</span>
-                        <span class="timeline-date">~800 CE</span>
-                    </div>
-                    <div class="timeline-era" style="background: #5a8a6a;">
-                        <span class="timeline-label">Modern languages</span>
-                        <span class="timeline-date">today</span>
-                    </div>
-                </div>
-            </div>
-        </details>
+                </details>
+            </section>
+        </main>
+
+        <footer>
+            <p>Built with data from <a href="https://en.wiktionary.org/" rel="noopener">Wiktionary</a> via <a href="https://kaikki.org/" rel="noopener">kaikki.org</a>. 1.6M etymology relationships across 16 languages.</p>
+        </footer>
     </div>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
